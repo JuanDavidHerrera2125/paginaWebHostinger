@@ -4,17 +4,6 @@ let rotationAngle = 0;
 let isDragging = false;
 let startX;
 
-// === Contadores y comentarios (persistencia) ===
-let visitCount = parseInt(localStorage.getItem('visitCount')) || 0;
-let starCount = parseInt(localStorage.getItem('starCount')) || 0;
-let comments = JSON.parse(localStorage.getItem('comments')) || [];
-
-const visitCounter = document.getElementById('visitCounter');
-const starCounter = document.getElementById('starCounter');
-const starBtn = document.getElementById('starBtn');
-const commentList = document.getElementById('commentList');
-const commentInput = document.getElementById('commentInput');
-
 // === Modal ===
 const modal = document.getElementById('mediaModal');
 const modalTitle = document.getElementById('modalTitle');
@@ -22,21 +11,58 @@ const modalMedia = document.getElementById('modalMedia');
 const closeBtn = document.querySelector('.close');
 
 // === Foto de perfil ===
-const profilePhoto = document.querySelector('.profile-photo img'); // 👈 Añadimos esto
+const profilePhoto = document.querySelector('.profile-photo img');
+
+// === Referencias a Firestore (Firebase) ===
+const statsRef = db.collection("stats").doc("global");
+const commentsRef = db.collection("comments");
+
+// === Contadores y comentarios (Firebase) ===
+const visitCounter = document.getElementById('visitCounter');
+const starCounter = document.getElementById('starCounter');
+const starBtn = document.getElementById('starBtn');
+const commentList = document.getElementById('commentList');
+const commentInput = document.getElementById('commentInput');
 
 // === Inicializar ===
 function init() {
-  // Incrementar visitas
-  visitCount++;
-  localStorage.setItem('visitCount', visitCount);
-  visitCounter.textContent = visitCount;
+  // Incrementar visitas (una vez por sesión)
+  if (!sessionStorage.getItem('visited')) {
+    statsRef.update({
+      visits: firebase.firestore.FieldValue.increment(1)
+    });
+    sessionStorage.setItem('visited', 'true');
+  }
 
-  // Actualizar estrellas
-  starCounter.textContent = starCount;
-  if (starCount > 0) starBtn.classList.add('active');
+  // Escuchar cambios en tiempo real
+  statsRef.onSnapshot(doc => {
+    if (doc.exists) {
+      const data = doc.data();
+      visitCounter.textContent = data.visits || 0;
+      starCounter.textContent = data.stars || 0;
+      if ((data.stars || 0) > 0) {
+        starBtn.classList.add('active');
+      } else {
+        starBtn.classList.remove('active');
+      }
+    }
+  });
 
-  // Mostrar comentarios guardados
-  renderComments();
+  commentsRef.orderBy("timestamp", "desc").onSnapshot(snapshot => {
+    commentList.innerHTML = '';
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const div = document.createElement('div');
+      div.className = 'comment-item';
+      div.innerHTML = `
+        <span class="comment-author">${data.author || 'Anónimo'}:</span> ${data.text}
+        <div style="font-size: 0.8rem; color: #aaa; margin-top: 5px;">
+          ${data.timestamp?.toDate().toLocaleString() || ''}
+        </div>
+      `;
+      commentList.appendChild(div);
+    });
+  });
 
   // Carrusel
   const total = items.length;
@@ -80,15 +106,31 @@ function init() {
 
   // Estrella
   starBtn.addEventListener('click', () => {
+    statsRef.update({
+      stars: firebase.firestore.FieldValue.increment(
+        starBtn.classList.contains('active') ? -1 : 1
+      )
+    });
     starBtn.classList.toggle('active');
-    starCount = starBtn.classList.contains('active') ? starCount + 1 : starCount - 1;
-    if (starCount < 0) starCount = 0;
-    localStorage.setItem('starCount', starCount);
-    starCounter.textContent = starCount;
   });
 
   // Comentarios
-  document.getElementById('commentForm').addEventListener('submit', addComment);
+  document.getElementById('commentForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = commentInput.value.trim();
+    if (!text) return;
+
+    const names = ['Visitante', 'DevFan', 'CodeLover', 'WebUser'];
+    const author = names[Math.floor(Math.random() * names.length)];
+
+    commentsRef.add({
+      text: text,
+      author: author,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    commentInput.value = '';
+  });
 
   // 👇 NUEVO: Evento para la foto de perfil
   profilePhoto.addEventListener('click', openProfilePhotoModal);
@@ -133,7 +175,7 @@ function openModal(e) {
 // 👇 NUEVO: Función para abrir la foto de perfil en modal
 function openProfilePhotoModal() {
   modalTitle.textContent = "Mi Foto de Perfil";
-  modalMedia.innerHTML = `<img src="img/fotoDePerfil2.png" alt="Foto de perfil">`; // 👈 Cambia por tu ruta real
+  modalMedia.innerHTML = `<img src="img/fotoDePerfil2.png" alt="Foto de perfil">`;
   modal.style.display = 'block';
   document.body.style.overflow = 'hidden';
 }
@@ -141,46 +183,6 @@ function openProfilePhotoModal() {
 function closeModal() {
   modal.style.display = 'none';
   document.body.style.overflow = ''; // ✅ Restaura scroll
-}
-
-function addComment(e) {
-  e.preventDefault();
-  const text = commentInput.value.trim();
-  if (!text) return;
-
-  // Generar nombre aleatorio
-  const names = ['Visitante', 'DevFan', 'CodeLover', 'WebUser'];
-  const author = names[Math.floor(Math.random() * names.length)];
-
-  // Crear comentario
-  const newComment = {
-    id: Date.now(),
-    author: author,
-    text: text,
-    date: new Date().toLocaleString()
-  };
-
-  comments.push(newComment);
-  localStorage.setItem('comments', JSON.stringify(comments));
-  renderComments();
-
-  commentInput.value = '';
-  // Scroll al nuevo comentario
-  const lastComment = commentList.lastElementChild;
-  if (lastComment) lastComment.scrollIntoView({ behavior: 'smooth' });
-}
-
-function renderComments() {
-  commentList.innerHTML = '';
-  comments.forEach(comment => {
-    const div = document.createElement('div');
-    div.className = 'comment-item';
-    div.innerHTML = `
-      <span class="comment-author">${comment.author}:</span> ${comment.text}
-      <div style="font-size: 0.8rem; color: #aaa; margin-top: 5px;">${comment.date}</div>
-    `;
-    commentList.appendChild(div);
-  });
 }
 
 document.addEventListener('DOMContentLoaded', init);

@@ -146,7 +146,7 @@ github = "github.com/tu-usuario"
     </div>
   </section>
 
-  <!-- Modal para imagen/video -->
+    <!-- Modal para imagen/video -->
   <div class="modal" id="mediaModal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -155,6 +155,29 @@ github = "github.com/tu-usuario"
     </div>
   </div>
 
+  <!-- Scripts al final -->
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Configuración de Firebase (sin espacios)
+    const firebaseConfig = {
+      apiKey: "AIzaSyB65pgHE25OZv2ddGFsDhM7eYnaxfP-6rc",
+      authDomain: "paginaweb-525fa.firebaseapp.com",
+      projectId: "paginaweb-525fa",
+      storageBucket: "paginaweb-525fa.firebasestorage.app",
+      messagingSenderId: "985459195201",
+      appId: "1:985459195201:web:91e544da3f1e71093a75c0",
+      measurementId: "G-Q7PFMEFQHH"
+    };
+
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
+  <!-- Tu script principal DEBE ir DESPUÉS de Firebase -->
   <script src="script.js"></script>
 </body>
 </html>
