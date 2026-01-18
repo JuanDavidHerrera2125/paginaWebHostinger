@@ -21,6 +21,14 @@ body {
   padding-top: 80px; /* Espacio para el header fijo */
 }
 
+/* === Contenedor global centrado === */
+.main-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 /* === FONDOS ESTÉTICOS === */
 .stars, .grid-overlay {
   position: fixed;
@@ -46,20 +54,20 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 40px; /* 👈 Añade padding horizontal para respirar */
+  padding: 20px 40px;
   border-bottom: 1px solid var(--neon-blue);
   background: rgba(0, 0, 0, 0.7);
   z-index: 100;
   display: flex;
-  justify-content: space-between; /* 👈 Distribuye: título a la izquierda, ícono a la derecha */
+  justify-content: space-between;
   align-items: center;
   backdrop-filter: blur(5px);
 }
 
 .title-container {
   text-align: center;
-  flex: 1; /* 👈 Ocupa el espacio central */
-  margin: 0 20px; /* 👈 Margen lateral para separar del ícono */
+  flex: 1;
+  margin: 0 20px;
 }
 
 .title-container h1 {
@@ -67,26 +75,21 @@ body {
   letter-spacing: 3px;
   text-shadow: 0 0 8px var(--neon-blue), 0 0 16px var(--neon-blue);
   margin: 0;
-  white-space: nowrap; /* Evita que se rompa en móviles pequeños */
-}
-
-.title-container p {
-  font-size: 0.9rem;
-  opacity: 0.8;
+  white-space: nowrap;
 }
 
 .hud-circle-icon {
   width: 50px;
   height: 50px;
   border: 2px solid var(--neon-blue);
-  border-radius: 50%; /* 100% o 50% da lo mismo para círculos */
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--neon-blue);
   font-size: 1.2rem;
   animation: pulse 2s infinite;
-  flex-shrink: 0; /* 👈 Evita que se contraiga */
+  flex-shrink: 0;
 }
 
 @keyframes pulse {
@@ -98,14 +101,12 @@ body {
 /* === TARJETA ÚNICA (ancho completo) === */
 .profile-section {
   width: 100%;
-  padding: 40px 10%;
+  padding: 40px 0;
   background: rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid var(--neon-blue);
 }
 
 .profile-card {
-  max-width: 1200px;
-  margin: 0 auto;
   background: rgba(0, 15, 30, 0.8);
   border: 2px solid var(--neon-blue);
   border-radius: 20px;
@@ -240,21 +241,24 @@ body {
 }
 
 /* === CARRUSEL 3D === */
+/* === CARRUSEL 3D === */
 .carousel-section {
   width: 100%;
+  padding: 60px 0;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* 👈 Centra horizontalmente */
   align-items: center;
-  padding: 40px 10%;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .carousel {
   width: 350px;
   height: 450px;
-  position: relative;
+  position: relative; /* 👈 Cambiado de absolute a relative */
   transform-style: preserve-3d;
   transform: rotateY(0deg) rotateX(-20deg);
   transition: transform 0.5s ease;
+  margin: 0 auto; /* 👈 Centrado */
 }
 
 .item {
@@ -334,7 +338,7 @@ body {
 
 /* === CONTADORES Y COMENTARIOS === */
 .interactive-section {
-  padding: 80px 10% 150px;
+  padding: 80px 0 150px;
   background: #000;
   border-top: 1px solid var(--neon-blue);
   position: relative;
@@ -504,10 +508,14 @@ body {
 /* === RESPONSIVO (MOBILE-FIRST) === */
 @media (max-width: 768px) {
   .hud-header {
-    padding: 15px;
+    padding: 15px 20px;
+  }
+  .title-container h1 {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
   }
   .profile-section {
-    padding: 20px 5%;
+    padding: 20px 0;
   }
   .profile-card {
     flex-direction: column;
@@ -539,7 +547,7 @@ body {
     font-size: 10px;
   }
   .carousel-section {
-    padding: 20px 5%;
+    padding: 40px 0;
   }
   .carousel {
     width: 280px;
@@ -558,7 +566,7 @@ body {
     gap: 10px;
   }
   .interactive-section {
-    padding: 60px 5% 120px;
+    padding: 60px 0 120px;
   }
   .modal-content {
     width: 95%;
