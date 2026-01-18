@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: radial-gradient(
+    circle at center,
+    #05080d 0%,
+    #020409 40%,
+    #000000 100%
+  );
+  color: #e6f1ff;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  width: 85%;
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 40px;
+  padding: 30px;
+  background: rgba(10, 25, 47, 0.65);
+  backdrop-filter: blur(18px);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.08);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #9fbcd6;
+  font-size: 14px;
+}
+
+.menu .active {
+  color: #00f6ff;
+}
+
+.hero {
+  text-align: center;
+  margin: 60px 0;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  margin: auto;
+  border-radius: 50%;
+  background: radial-gradient(circle, #00f6ff, transparent 70%);
+  box-shadow: 0 0 30px #00f6ff;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.hero p {
+  opacity: 0.7;
+  margin: 10px 0 30px;
+}
+
+.btn-glow {
+  padding: 12px 30px;
+  background: transparent;
+  border: 1px solid #00f6ff;
+  color: #00f6ff;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0,246,255,.6);
+  transition: all .3s ease;
+}
+
+.btn-glow:hover {
+  background: #00f6ff;
+  color: #020b16;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  padding: 20px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(0,255,255,0.12);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(0,246,255,.3);
+}
+
+.card h3 {
+  color: #00f6ff;
+  margin-bottom: 10px;
+}
+
+.card span {
+  font-size: 12px;
+  opacity: .6;
+}
