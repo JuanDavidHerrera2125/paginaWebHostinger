@@ -1,52 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Architecting the Future</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WEB DEVELOPER | Tu Nombre</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
+  <!-- Fondo estético -->
+  <div class="stars"></div>
+  <div class="grid-overlay"></div>
 
-<canvas id="particles"></canvas>
-
-<div class="container">
-  <nav class="nav">
-    <span class="logo">AI · FUTURE</span>
-    <div class="menu">
-      <a href="#">Services</a>
-      <a href="#">Projects</a>
-      <a href="#">Clients</a>
-      <a href="#" class="active">Explore</a>
+  <!-- Header HUD -->
+  <header class="hud-header">
+    <div class="title-container">
+      <h1>WEB DEVELOPER</h1>
+      <p><b>Tecnólogo en Analisis Y Desarrollo De Software</b></p>
+      <p>SENA</p>
     </div>
-  </nav>
+    <div class="hud-circle-icon">
+      <i class="fas fa-play"></i>
+    </div>
+  </header>
 
-  <section class="hero">
-    <div class="avatar"></div>
-    <h1>ARCHITECTING THE FUTURE</h1>
-    <p>Innovating with Code & AI</p>
-    <button class="btn-glow">VIEW PROJECTS</button>
+  <!-- Panel izquierdo: Información personal (sin botones de upload) -->
+  <aside class="sidebar-info">
+    <div class="tag">3: Profile Data</div>
+    <div class="stats-box">
+      <p><strong>DIPLOMADOS:</strong> 4</p>
+      <p><strong>CERTIFICACIÓN:</strong> JS Avanzado (Udemy)</p>
+      <p><strong>TECNOLOGÍAS:</strong> HTML, CSS, JS, React</p>
+      <div class="neon-line"></div>
+      <div class="social-icons">
+        <a href="https://instagram.com/tuusuario" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/tuusuario" target="_blank" class="social-btn"><i class="fab fa-facebook"></i></a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Panel derecho: Tus datos reales -->
+  <div class="code-panel">
+    <pre>
+name = "Tu Nombre"
+role = "Web Developer"
+education = "U. de Caldas"
+certifications = [
+  "JS Avanzado - Udemy",
+  "Diplomado en IA",
+  "Diplomado en IoT",
+  "Diplomado en Cloud",
+  "Diplomado en DevOps"
+]
+github = "github.com/tu-usuario"
+    </pre>
+  </div>
+
+  <!-- Foto personal -->
+  <div class="profile-photo">
+    <img src="img/fotoDePerfil2.png" alt="Tu Foto" />
+    <div class="glow-effect"></div>
+  </div>
+
+  <!-- Carrusel 3D -->
+  <main class="main-scene">
+    <div class="carousel" id="carousel">
+      <div class="item" data-type="image" data-src="img/project1.jpg" data-title="App Financiera">
+        <img src="img/project1.jpg" alt="App Financiera" />
+        <div class="item-label">App Financiera</div>
+      </div>
+      <div class="item" data-type="video" data-src="https://www.youtube.com/embed/dQw4w9WgXcQ" data-title="Demo E-commerce">
+        <div class="video-placeholder">
+          <i class="fas fa-play-circle"></i>
+          <span>Ver Demo</span>
+        </div>
+        <div class="item-label">E-commerce</div>
+      </div>
+      <div class="item" data-type="image" data-src="img/project2.jpg" data-title="Dashboard Admin">
+        <img src="img/project2.jpg" alt="Dashboard Admin" />
+        <div class="item-label">Dashboard Admin</div>
+      </div>
+      <div class="item" data-type="video" data-src="https://www.youtube.com/embed/jNQXAC9IVRw" data-title="Landing Page">
+        <div class="video-placeholder">
+          <i class="fas fa-play-circle"></i>
+          <span>Ver Demo</span>
+        </div>
+        <div class="item-label">Landing Page</div>
+      </div>
+      <div class="item" data-type="image" data-src="img/project3.jpg" data-title="API REST">
+        <img src="img/project3.jpg" alt="API REST" />
+        <div class="item-label">API REST</div>
+      </div>
+    </div>
+
+    <div class="platform">
+      <div class="beam"></div>
+      <div class="ring"></div>
+    </div>
+  </main>
+
+  <!-- SECCIÓN DE CONTADORES Y COMENTARIOS (SCROLL EXTENSO) -->
+  <section class="interactive-section">
+    <div class="container counters">
+      <div class="counter-box">
+        <h3>Visitas</h3>
+        <div class="counter-value" id="visitCounter">0</div>
+      </div>
+      <div class="counter-box">
+        <h3>Estrellas</h3>
+        <div class="counter-value" id="starCounter">0</div>
+        <div class="star-btn" id="starBtn">★</div>
+      </div>
+    </div>
+
+    <div class="container comments">
+      <h2>Comentarios</h2>
+      <form id="commentForm" class="comment-form">
+        <input type="text" id="commentInput" class="comment-input" placeholder="Escribe un comentario..." required />
+        <button type="submit" class="comment-submit">Enviar</button>
+      </form>
+      <div id="commentList" class="comment-list"></div>
+    </div>
   </section>
 
-  <section class="projects">
-    <div class="card">
-      <h3>AURORA-CONNECT</h3>
-      <p>AI driven communication platform</p>
-      <span>Python · React · AWS</span>
+  <!-- Modal para imagen/video -->
+  <div class="modal" id="mediaModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <div id="modalMedia"></div>
     </div>
-    <div class="card">
-      <h3>QUANTUM-LEDGER</h3>
-      <p>Blockchain for secure data</p>
-      <span>Python · React · AWS</span>
-    </div>
-    <div class="card">
-      <h3>NEBULA-API</h3>
-      <p>Scalable cloud infrastructure</p>
-      <span>Python · React · AWS</span>
-    </div>
-  </section>
-</div>
+  </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
