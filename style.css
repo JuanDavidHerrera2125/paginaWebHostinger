@@ -154,23 +154,27 @@ body {
   word-wrap: break-word;
 }
 
+/* === FOTO PERSONAL + NOMBRE DEBAJO === */
 .profile-photo {
   position: fixed;
   top: 120px;
   left: 50%;
   transform: translateX(-50%);
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid var(--neon-blue);
-  box-shadow: 0 0 20px var(--neon-blue);
+  width: 180px;
+  height: 220px; /* 👈 Aumentado para incluir el nombre */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   z-index: 101;
 }
 
 .profile-photo img {
-  width: 100%;
-  height: 100%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid var(--neon-blue);
+  box-shadow: 0 0 20px var(--neon-blue);
   object-fit: cover;
 }
 
@@ -183,6 +187,15 @@ body {
   border-radius: 50%;
   box-shadow: 0 0 30px var(--neon-blue);
   z-index: -1;
+}
+
+.profile-name {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: var(--neon-blue);
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .main-scene {
@@ -439,7 +452,7 @@ body {
   border-radius: 8px;
 }
 
-/* Responsive */
+/* === RESPONSIVO MEJORADO === */
 @media (max-width: 768px) {
   .hud-header {
     flex-direction: column;
@@ -456,8 +469,15 @@ body {
   }
   .profile-photo {
     top: 80px;
+    width: 160px;
+    height: 200px; /* 👈 Ajustado para móvil */
+  }
+  .profile-photo img {
     width: 100px;
     height: 100px;
+  }
+  .profile-name {
+    font-size: 1rem;
   }
   .carousel {
     width: 280px;
@@ -473,5 +493,10 @@ body {
   }
   .comment-form {
     flex-direction: column;
+  }
+  /* Ajuste del carrusel en móvil para no tapar el contenido */
+  .main-scene {
+    height: 60vh;
+    margin-top: 150px;
   }
 }

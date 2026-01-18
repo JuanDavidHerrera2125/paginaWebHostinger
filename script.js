@@ -133,7 +133,7 @@ function openModal(e) {
 // 👇 NUEVO: Función para abrir la foto de perfil en modal
 function openProfilePhotoModal() {
   modalTitle.textContent = "Mi Foto de Perfil";
-  modalMedia.innerHTML = `<img src="img/your-photo.jpg" alt="Foto de perfil">`; // 👈 Cambia por tu ruta real
+  modalMedia.innerHTML = `<img src="img/fotoDePerfil2.png" alt="Foto de perfil">`; // 👈 Cambia por tu ruta real
   modal.style.display = 'block';
   document.body.style.overflow = 'hidden';
 }
