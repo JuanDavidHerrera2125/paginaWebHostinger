@@ -1,4 +1,4 @@
-/* === TU CÓDIGO ANTERIOR SIN CAMBIOS HASTA .main-scene === */
+/* === VARIABLES GLOBALES === */
 :root {
   --neon-blue: #00f2ff;
   --dark-bg: #01080e;
@@ -18,8 +18,10 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   perspective: 2000px;
+  padding-top: 80px; /* Espacio para el header fijo */
 }
 
+/* === FONDOS ESTÉTICOS === */
 .stars, .grid-overlay {
   position: fixed;
   top: 0;
@@ -38,27 +40,36 @@ body {
                repeating-linear-gradient(90deg, rgba(0,242,255,0.05) 0px, rgba(0,242,255,0.05) 1px, transparent 1px, transparent 20px);
 }
 
+/* === HEADER HUD === */
 .hud-header {
   position: fixed;
-  top: 30px;
-  left: 5%;
-  width: 90%;
-  padding: 20px;
-  border: 1px solid var(--neon-blue);
-  border-radius: 0 40px 0 40px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 40px; /* 👈 Añade padding horizontal para respirar */
+  border-bottom: 1px solid var(--neon-blue);
   background: rgba(0, 0, 0, 0.7);
   z-index: 100;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* 👈 Distribuye: título a la izquierda, ícono a la derecha */
   align-items: center;
   backdrop-filter: blur(5px);
 }
 
-.title-container h1 {
-  font-size: 2rem;
-  letter-spacing: 2px;
-  text-shadow: 0 0 5px var(--neon-blue);
+.title-container {
+  text-align: center;
+  flex: 1; /* 👈 Ocupa el espacio central */
+  margin: 0 20px; /* 👈 Margen lateral para separar del ícono */
 }
+
+.title-container h1 {
+  font-size: 3.2rem;
+  letter-spacing: 3px;
+  text-shadow: 0 0 8px var(--neon-blue), 0 0 16px var(--neon-blue);
+  margin: 0;
+  white-space: nowrap; /* Evita que se rompa en móviles pequeños */
+}
+
 .title-container p {
   font-size: 0.9rem;
   opacity: 0.8;
@@ -68,13 +79,14 @@ body {
   width: 50px;
   height: 50px;
   border: 2px solid var(--neon-blue);
-  border-radius: 50%;
+  border-radius: 50%; /* 100% o 50% da lo mismo para círculos */
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--neon-blue);
   font-size: 1.2rem;
   animation: pulse 2s infinite;
+  flex-shrink: 0; /* 👈 Evita que se contraiga */
 }
 
 @keyframes pulse {
@@ -83,98 +95,47 @@ body {
   100% { transform: scale(1); }
 }
 
-.sidebar-info {
-  position: fixed;
-  top: 250px;
-  left: 40px;
-  width: 240px;
-  padding: 20px;
-  border-left: 3px solid var(--neon-blue);
-  background: rgba(0, 242, 255, 0.05);
-  z-index: 90;
-  backdrop-filter: blur(5px);
+/* === TARJETA ÚNICA (ancho completo) === */
+.profile-section {
+  width: 100%;
+  padding: 40px 10%;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid var(--neon-blue);
 }
 
-.tag {
-  color: var(--neon-blue);
-  font-size: 0.8rem;
-  margin-bottom: 10px;
-}
-
-.stats-box p {
-  margin: 8px 0;
-  font-size: 0.9rem;
-}
-
-.neon-line {
-  height: 2px;
-  background: var(--neon-blue);
-  margin: 15px 0;
-}
-
-.social-icons {
+.profile-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(0, 15, 30, 0.8);
+  border: 2px solid var(--neon-blue);
+  border-radius: 20px;
+  padding: 30px;
   display: flex;
-  gap: 10px;
-  margin-top: 15px;
+  gap: 40px;
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.2), 0 0 10px var(--neon-blue);
 }
 
-.social-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--neon-blue);
-  border-radius: 50%;
-  color: var(--neon-blue);
-  font-size: 1.2rem;
-  transition: all 0.3s;
-}
-.social-btn:hover {
-  background: var(--neon-blue);
-  color: black;
-  transform: scale(1.1);
-}
-
-.code-panel {
-  position: fixed;
-  top: 200px;
-  right: 40px;
-  color: var(--neon-blue);
-  font-size: 12px;
-  opacity: 0.6;
-  z-index: 80;
-  font-family: monospace;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 15px;
-  border-radius: 5px;
-  border: 1px solid var(--neon-blue);
-  max-width: 300px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-/* === FOTO PERSONAL + NOMBRE DEBAJO === */
-.profile-photo {
-  position: fixed;
-  top: 120px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px;
-  height: 220px; /* 👈 Aumentado para incluir el nombre */
+.profile-left {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 101;
+  min-width: 150px;
 }
 
-.profile-photo img {
+.profile-photo {
   width: 120px;
   height: 120px;
   border-radius: 50%;
+  overflow: hidden;
   border: 2px solid var(--neon-blue);
   box-shadow: 0 0 20px var(--neon-blue);
+  position: relative;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -189,26 +150,102 @@ body {
   z-index: -1;
 }
 
-.profile-name {
-  margin-top: 10px;
-  font-size: 1.2rem;
-  color: var(--neon-blue);
-  text-align: center;
-  font-weight: bold;
-  letter-spacing: 1px;
+.profile-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
 }
 
-.main-scene {
-  height: 100vh;
+.profile-socials .social-btn {
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--neon-blue);
+  border-radius: 50%;
+  color: var(--neon-blue);
+  transition: all 0.3s;
+}
+.profile-socials .social-btn:hover {
+  background: var(--neon-blue);
+  color: black;
+  transform: scale(1.1);
+}
+
+.profile-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  color: var(--neon-blue);
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.profile-title {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+.profile-institution {
+  font-size: 0.9rem;
+  color: var(--neon-blue);
+  margin-bottom: 20px;
+}
+
+.profile-stats {
+  margin: 20px 0;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 5px;
+  border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+}
+
+.stat-label {
+  font-weight: bold;
+  color: var(--neon-blue);
+}
+
+.stat-value {
+  font-size: 0.9rem;
+}
+
+.code-panel {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--neon-blue);
+  border-radius: 10px;
+  padding: 20px;
+  font-family: monospace;
+  color: var(--neon-blue);
+  font-size: 12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.1);
+}
+
+/* === CARRUSEL 3D === */
+.carousel-section {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 2000px;
-  position: relative;
-  z-index: 50;
-  margin-top: 100px;
-  transform-style: preserve-3d;
-  transform: rotateX(20deg);
+  padding: 40px 10%;
 }
 
 .carousel {
@@ -295,13 +332,15 @@ body {
   box-shadow: 0 0 30px var(--neon-blue);
 }
 
-/* === NUEVO: SECCIÓN INTERACTIVA (CONTADORES + COMENTARIOS) === */
+/* === CONTADORES Y COMENTARIOS === */
 .interactive-section {
-  padding: 120px 10% 200px;
+  padding: 80px 10% 150px;
   background: #000;
   border-top: 1px solid var(--neon-blue);
   position: relative;
   z-index: 40;
+  width: 100%;
+  text-align: center;
 }
 
 .container {
@@ -356,12 +395,15 @@ body {
 
 .comment-form {
   display: flex;
+  justify-content: center;
   gap: 10px;
   margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
 .comment-input {
   flex: 1;
+  min-width: 200px;
   padding: 10px;
   background: rgba(0, 242, 255, 0.05);
   border: 1px solid var(--neon-blue);
@@ -385,6 +427,7 @@ body {
 
 .comment-list {
   margin-top: 20px;
+  text-align: left;
 }
 
 .comment-item {
@@ -406,7 +449,7 @@ body {
   color: var(--neon-blue);
 }
 
-/* === MODAL (igual que antes) === */
+/* === MODAL === */
 .modal {
   display: none;
   position: fixed;
@@ -416,16 +459,22 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
   position: relative;
-  margin: 5% auto;
   padding: 20px;
   width: 90%;
   max-width: 900px;
   text-align: center;
   color: white;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--neon-blue);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
 }
 
 .close {
@@ -452,32 +501,45 @@ body {
   border-radius: 8px;
 }
 
-/* === RESPONSIVO MEJORADO === */
+/* === RESPONSIVO (MOBILE-FIRST) === */
 @media (max-width: 768px) {
   .hud-header {
-    flex-direction: column;
     padding: 15px;
   }
-  .sidebar-info {
-    left: 20px;
-    width: 200px;
+  .profile-section {
+    padding: 20px 5%;
   }
-  .code-panel {
-    right: 20px;
-    max-width: 200px;
-    font-size: 10px;
+  .profile-card {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+  .profile-left {
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
   }
   .profile-photo {
-    top: 80px;
-    width: 160px;
-    height: 200px; /* 👈 Ajustado para móvil */
-  }
-  .profile-photo img {
     width: 100px;
     height: 100px;
   }
   .profile-name {
-    font-size: 1rem;
+    font-size: 1.2rem;
+  }
+  .profile-title,
+  .profile-institution {
+    font-size: 0.8rem;
+  }
+  .stat-item {
+    font-size: 0.8rem;
+  }
+  .code-panel {
+    padding: 15px;
+    font-size: 10px;
+  }
+  .carousel-section {
+    padding: 20px 5%;
   }
   .carousel {
     width: 280px;
@@ -493,10 +555,13 @@ body {
   }
   .comment-form {
     flex-direction: column;
+    gap: 10px;
   }
-  /* Ajuste del carrusel en móvil para no tapar el contenido */
-  .main-scene {
-    height: 60vh;
-    margin-top: 150px;
+  .interactive-section {
+    padding: 60px 5% 120px;
+  }
+  .modal-content {
+    width: 95%;
+    max-width: 95%;
   }
 }

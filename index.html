@@ -17,33 +17,53 @@
   <header class="hud-header">
     <div class="title-container">
       <h1>WEB DEVELOPER</h1>
-      <p><b>Tecnólogo en Analisis Y Desarrollo De Software</b></p>
-      <p>SENA</p>
     </div>
     <div class="hud-circle-icon">
       <i class="fas fa-play"></i>
     </div>
   </header>
 
-  <!-- Panel izquierdo: Información personal -->
-  <aside class="sidebar-info">
-    <div class="tag">3: Profile Data</div>
-    <div class="stats-box">
-      <p><strong>DIPLOMADOS:</strong> 4</p>
-      <p><strong>CERTIFICACIÓN:</strong> JS Avanzado (Udemy)</p>
-      <p><strong>TECNOLOGÍAS:</strong> HTML, CSS, JS, React</p>
-      <div class="neon-line"></div>
-      <div class="social-icons">
-        <a href="https://instagram.com/tuusuario" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com/tuusuario" target="_blank" class="social-btn"><i class="fab fa-facebook"></i></a>
+  <!-- Tarjeta única: Información + Código -->
+  <section class="profile-section">
+    <div class="profile-card">
+      <!-- Foto y redes -->
+      <div class="profile-left">
+        <div class="profile-photo">
+          <img src="img/fotoDePerfil2.png" alt="Tu Foto" />
+          <div class="glow-effect"></div>
+        </div>
+        <div class="profile-socials">
+          <a href="https://instagram.com/tuusuario" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="https://facebook.com/tuusuario" target="_blank" class="social-btn"><i class="fab fa-facebook"></i></a>
+        </div>
       </div>
-    </div>
-  </aside>
 
-  <!-- Panel derecho: Tus datos reales -->
-  <div class="code-panel">
-    <pre>
-name = "Juan David Herrera"
+      <!-- Datos personales -->
+      <div class="profile-right">
+        <div class="profile-info">
+          <h2 class="profile-name">Tu Nombre</h2>
+          <p class="profile-title">Tecnólogo en Análisis y Desarrollo de Software</p>
+          <p class="profile-institution">SENA</p>
+          <div class="profile-stats">
+            <div class="stat-item">
+              <span class="stat-label">DIPLOMADOS:</span>
+              <span class="stat-value">4</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">CERTIFICACIÓN:</span>
+              <span class="stat-value">JS Avanzado (Udemy)</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">TECNOLOGÍAS:</span>
+              <span class="stat-value">HTML, CSS, JS, React</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Código técnico -->
+        <div class="code-panel">
+          <pre>
+name = "Tu Nombre"
 role = "Web Developer"
 education = "U. de Caldas"
 certifications = [
@@ -54,18 +74,14 @@ certifications = [
   "Diplomado en DevOps"
 ]
 github = "github.com/tu-usuario"
-    </pre>
-  </div>
-
-  <!-- Foto personal + Nombre debajo -->
-  <div class="profile-photo">
-    <img src="img/fotoDePerfil2.png" alt="Tu Foto" />
-    <div class="glow-effect"></div>
-    <div class="profile-name">Juan David Herrera</div> <!-- 👈 NUEVO: Nombre debajo de la foto -->
-  </div>
+          </pre>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Carrusel 3D -->
-  <main class="main-scene">
+  <section class="carousel-section">
     <div class="carousel" id="carousel">
       <div class="item" data-type="image" data-src="img/project1.jpg" data-title="App Financiera">
         <img src="img/project1.jpg" alt="App Financiera" />
@@ -94,14 +110,13 @@ github = "github.com/tu-usuario"
         <div class="item-label">API REST</div>
       </div>
     </div>
-
     <div class="platform">
       <div class="beam"></div>
       <div class="ring"></div>
     </div>
-  </main>
+  </section>
 
-  <!-- SECCIÓN DE CONTADORES Y COMENTARIOS (SCROLL EXTENSO) -->
+  <!-- SECCIÓN DE CONTADORES Y COMENTARIOS -->
   <section class="interactive-section">
     <div class="container counters">
       <div class="counter-box">
