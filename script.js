@@ -186,3 +186,9 @@ function closeModal() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+// ✅ ASEGURAR QUE EL MODAL ESTÉ OCULTO AL INICIO
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('mediaModal');
+  if (modal) modal.style.display = 'none';
+});
