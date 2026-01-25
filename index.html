@@ -9,11 +9,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <!-- Fondo estético -->
   <div class="stars"></div>
   <div class="grid-overlay"></div>
 
-  <!-- Header HUD -->
   <header class="hud-header">
     <div class="title-container">
       <h1>WEB DEVELOPER</h1>
@@ -23,31 +21,27 @@
     </div>
   </header>
 
-  <!-- Tarjeta única: Información + Código -->
   <section class="profile-section">
     <div class="main-container">
       <div class="profile-card">
-        <!-- Foto y redes -->
         <div class="profile-left">
           <div class="profile-photo">
             <img src="img/fotoDePerfil2.png" alt="Tu Foto" />
             <div class="glow-effect"></div>
           </div>
           <div class="profile-socials">
-  <a href="https://www.instagram.com/juandavidh25/" target="_blank" class="social-btn">
-    <i class="fab fa-instagram"></i>
-  </a>
-  <a href="https://www.facebook.com/juandavid.meneses.509/" target="_blank" class="social-btn">
-    <i class="fab fa-facebook"></i>
-  </a>
-  <a href="https://wa.me/573144673020?text=Hola%20Juan%20David,%20vi%20tu%20portafolio!" target="_blank" class="social-btn">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-</div>
-          
+            <a href="https://www.instagram.com/juandavidh25/" target="_blank" class="social-btn">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/juandavid.meneses.509/" target="_blank" class="social-btn">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://wa.me/573144673020?text=Hola%20Juan%20David,%20vi%20tu%20portafolio!" target="_blank" class="social-btn">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
         </div>
 
-        <!-- Datos personales -->
         <div class="profile-right">
           <div class="profile-info">
             <h2 class="profile-name">Juan David Herrera</h2>
@@ -69,9 +63,8 @@
             </div>
           </div>
 
-          <!-- Código técnico -->
-         <div class="code-panel">
-  <pre>
+          <div class="code-panel">
+            <pre>
 name = "Juan David Herrera"
 role = "Web Developer"
 education = ["SENA", "U. de Caldas"]
@@ -85,8 +78,6 @@ certifications = [
   "Diplomado en Programación Básica"
 ]
 github = "<a href='https://github.com/JuanDavidHerrera2125' target='_blank' class='code-link'>@JuanDavidHerrera2125</a>"
-  </pre>
-</div>
             </pre>
           </div>
         </div>
@@ -94,7 +85,6 @@ github = "<a href='https://github.com/JuanDavidHerrera2125' target='_blank' clas
     </div>
   </section>
 
-  <!-- Carrusel 3D -->
   <section class="carousel-section">
     <div class="main-container">
       <div class="carousel" id="carousel">
@@ -102,18 +92,16 @@ github = "<a href='https://github.com/JuanDavidHerrera2125' target='_blank' clas
           <img src="img/project1.jpg" alt="App Financiera" />
           <div class="item-label">App Financiera</div>
         </div>
-  <div class="item" data-type="video" data-src="https://www.youtube.com/embed/ONGxbpqI3mI" data-title="GoApp E-commerce">
-  <div class="video-placeholder">
-    <img src="https://img.youtube.com/vi/ONGxbpqI3mI/hqdefault.jpg" alt="Preview GoApp" class="video-thumb">
-    
-    <div class="play-overlay">
-      <i class="fas fa-play-circle"></i>
-    </div>
-    
-    <span class="video-action-text">Ver GoApp</span>
-  </div>
-  <div class="item-label">E-commerce</div>
-</div>
+        <div class="item" data-type="video" data-src="https://www.youtube.com/embed/ONGxbpqI3mI" data-title="GoApp E-commerce">
+          <div class="video-placeholder">
+            <img src="https://img.youtube.com/vi/ONGxbpqI3mI/hqdefault.jpg" alt="Preview GoApp" class="video-thumb">
+            <div class="play-overlay">
+              <i class="fas fa-play-circle"></i>
+            </div>
+            <span class="video-action-text">Ver GoApp</span>
+          </div>
+          <div class="item-label">E-commerce</div>
+        </div>
         <div class="item" data-type="image" data-src="img/project2.jpg" data-title="Dashboard Admin">
           <img src="img/project2.jpg" alt="Dashboard Admin" />
           <div class="item-label">Dashboard Admin</div>
@@ -137,7 +125,33 @@ github = "<a href='https://github.com/JuanDavidHerrera2125' target='_blank' clas
     </div>
   </section>
 
-  <!-- SECCIÓN DE CONTADORES Y COMENTARIOS -->
+  <section class="blog-section">
+    <div class="main-container">
+      <div class="blog-header">
+        <i class="fas fa-terminal"></i>
+        <h2>SYSTEM_LOG: NOTICIAS Y APORTES</h2>
+      </div>
+
+      <div class="blog-container">
+        <article class="blog-post">
+          <div class="post-date">[ 25 ENE 2026 ]</div>
+          <div class="post-body">
+            <h3>Nuevas tendencias en React 2026</h3>
+            <p>Explorando las últimas actualizaciones de los Server Components y cómo optimizar el rendimiento en aplicaciones de alto tráfico.</p>
+          </div>
+        </article>
+
+        <article class="blog-post">
+          <div class="post-date">[ 20 ENE 2026 ]</div>
+          <div class="post-body">
+            <h3>Guía de CSS Grid Avanzado</h3>
+            <p>Comparto mi último aporte sobre cómo crear layouts complejos y responsivos sin morir en el intento.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="interactive-section">
     <div class="main-container">
       <div class="container counters">
@@ -163,7 +177,6 @@ github = "<a href='https://github.com/JuanDavidHerrera2125' target='_blank' clas
     </div>
   </section>
 
-    <!-- Modal para imagen/video -->
   <div class="modal" id="mediaModal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -172,13 +185,11 @@ github = "<a href='https://github.com/JuanDavidHerrera2125' target='_blank' clas
     </div>
   </div>
 
-  <!-- Scripts al final -->
-  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // Configuración de Firebase (sin espacios)
+    // Configuración de Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyB65pgHE25OZv2ddGFsDhM7eYnaxfP-6rc",
       authDomain: "paginaweb-525fa.firebaseapp.com",
@@ -194,7 +205,6 @@ github = "<a href='https://github.com/JuanDavidHerrera2125' target='_blank' clas
     const db = firebase.firestore();
   </script>
 
-  <!-- Tu script principal DEBE ir DESPUÉS de Firebase -->
   <script src="script.js"></script>
 </body>
 </html>
