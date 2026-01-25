@@ -9,11 +9,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <!-- Fondo estético -->
   <div class="stars"></div>
   <div class="grid-overlay"></div>
 
-  <!-- Header HUD -->
   <header class="hud-header">
     <div class="title-container">
       <h1>WEB DEVELOPER</h1>
@@ -23,61 +21,42 @@
     </div>
   </header>
 
-  <!-- Tarjeta única: Información + Código -->
   <section class="profile-section">
     <div class="main-container">
       <div class="profile-card">
-        <!-- Foto y redes -->
         <div class="profile-left">
           <div class="profile-photo">
             <img src="img/fotoDePerfil2.png" alt="Tu Foto" />
             <div class="glow-effect"></div>
           </div>
           <div class="profile-socials">
-            <a href="https://instagram.com/tuusuario" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
-            <a href="https://facebook.com/tuusuario" target="_blank" class="social-btn"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/juandavidh25/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/juandavid.meneses.509/" target="_blank" class="social-btn"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/573144673020?text=Hola%20Juan%20David" target="_blank" class="social-btn"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
 
-        <!-- Datos personales -->
         <div class="profile-right">
           <div class="profile-info">
             <h2 class="profile-name">Juan David Herrera</h2>
             <p class="profile-title">Tecnólogo en Análisis y Desarrollo de Software</p>
             <p class="profile-institution">SENA</p>
             <div class="profile-stats">
-              <div class="stat-item">
-                <span class="stat-label">DIPLOMADOS:</span>
-                <span class="stat-value">4</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">CERTIFICACIÓN:</span>
-                <span class="stat-value">JS Avanzado (Udemy)</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">TECNOLOGÍAS:</span>
-                <span class="stat-value">HTML, CSS, JS, React</span>
-              </div>
+              <div class="stat-item"><span class="stat-label">DIPLOMADOS:</span><span class="stat-value">4</span></div>
+              <div class="stat-item"><span class="stat-label">CERTIFICACIÓN:</span><span class="stat-value">JS Avanzado</span></div>
+              <div class="stat-item"><span class="stat-label">TECNOLOGÍAS:</span><span class="stat-value">HTML, CSS, JS, React</span></div>
             </div>
           </div>
-
-          <!-- Código técnico -->
           <div class="code-panel">
             <pre>
 name = "Juan David Herrera"
 role = "Web Developer"
-education = "SENA"
-education = "U. de Caldas"
 certifications = [
-  "Tecnologo En Analisis Y Desarrollo De Software"
+  "Tecnologo En Analisis Y Desarrollo De Software",
   "JS Avanzado - Udemy",
-  "Diplomado en Desarrollo de aplicaciones WEB",
-  "Diplomado en Desarrollo de software ",
-  "Diplomado en Fundamentos de Programación",
-  "Diplomado en Habilidades en Programación con énfasis en aplicaciones WEB"
-  "Diplomado en Programación Básica "
+  "Diplomado en Desarrollo WEB"
 ]
-github = "github.com/tu-usuario"
+github = "<a href="https://github.com/JuanDavidHerrera2125" target="_blank" class="code-link">https://github.com/JuanDavidHerrera2125</a>"
             </pre>
           </div>
         </div>
@@ -85,45 +64,54 @@ github = "github.com/tu-usuario"
     </div>
   </section>
 
-  <!-- Carrusel 3D -->
   <section class="carousel-section">
     <div class="main-container">
       <div class="carousel" id="carousel">
         <div class="item" data-type="image" data-src="img/project1.jpg" data-title="App Financiera">
-          <img src="img/project1.jpg" alt="App Financiera" />
-          <div class="item-label">App Financiera</div>
+          <img src="img/project1.jpg" alt="App" /><div class="item-label">App Financiera</div>
         </div>
-        <div class="item" data-type="video" data-src="https://www.youtube.com/embed/dQw4w9WgXcQ" data-title="Demo E-commerce">
+        <div class="item" data-type="video" data-src="https://www.youtube.com/embed/ONGxbpqI3mI" data-title="GoApp E-commerce">
           <div class="video-placeholder">
-            <i class="fas fa-play-circle"></i>
-            <span>Ver Demo</span>
+            <img src="https://img.youtube.com/vi/ONGxbpqI3mI/hqdefault.jpg" class="video-thumb">
+            <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
+            <span class="video-action-text">Ver GoApp</span>
           </div>
           <div class="item-label">E-commerce</div>
         </div>
         <div class="item" data-type="image" data-src="img/project2.jpg" data-title="Dashboard Admin">
-          <img src="img/project2.jpg" alt="Dashboard Admin" />
-          <div class="item-label">Dashboard Admin</div>
+          <img src="img/project2.jpg" alt="Dashboard" /><div class="item-label">Dashboard Admin</div>
         </div>
         <div class="item" data-type="video" data-src="https://www.youtube.com/embed/jNQXAC9IVRw" data-title="Landing Page">
-          <div class="video-placeholder">
-            <i class="fas fa-play-circle"></i>
-            <span>Ver Demo</span>
-          </div>
+          <div class="video-placeholder"><i class="fas fa-play-circle"></i><span>Ver Demo</span></div>
           <div class="item-label">Landing Page</div>
         </div>
         <div class="item" data-type="image" data-src="img/project3.jpg" data-title="API REST">
-          <img src="img/project3.jpg" alt="API REST" />
-          <div class="item-label">API REST</div>
+          <img src="img/project3.jpg" alt="API" /><div class="item-label">API REST</div>
         </div>
       </div>
-      <div class="platform">
-        <div class="beam"></div>
-        <div class="ring"></div>
+      <div class="platform"><div class="beam"></div><div class="ring"></div></div>
+    </div>
+  </section>
+
+  <section class="blog-section">
+    <div class="main-container">
+      <div class="blog-header">
+        <i class="fas fa-microchip"></i> <h2>TECH_LOGS // ACTUALIZACIONES</h2>
+      </div>
+      <div class="blog-container">
+        <article class="blog-post">
+          <div class="post-date">24 ENE 2024</div>
+          <div class="post-body">
+            <h3>Implementación de Firebase Real-time</h3>
+            <p>He integrado Firestore para gestionar comentarios y estadísticas en tiempo real, optimizando la interacción del usuario.</p>
+            <div class="post-media">
+              </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- SECCIÓN DE CONTADORES Y COMENTARIOS -->
   <section class="interactive-section">
     <div class="main-container">
       <div class="container counters">
@@ -149,7 +137,6 @@ github = "github.com/tu-usuario"
     </div>
   </section>
 
-    <!-- Modal para imagen/video -->
   <div class="modal" id="mediaModal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -158,13 +145,9 @@ github = "github.com/tu-usuario"
     </div>
   </div>
 
-  <!-- Scripts al final -->
-  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-
   <script>
-    // Configuración de Firebase (sin espacios)
     const firebaseConfig = {
       apiKey: "AIzaSyB65pgHE25OZv2ddGFsDhM7eYnaxfP-6rc",
       authDomain: "paginaweb-525fa.firebaseapp.com",
@@ -174,13 +157,9 @@ github = "github.com/tu-usuario"
       appId: "1:985459195201:web:91e544da3f1e71093a75c0",
       measurementId: "G-Q7PFMEFQHH"
     };
-
-    // Inicializar Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
   </script>
-
-  <!-- Tu script principal DEBE ir DESPUÉS de Firebase -->
   <script src="script.js"></script>
 </body>
 </html>
