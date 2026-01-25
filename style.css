@@ -168,6 +168,12 @@ body {
   width: 100%;
 }
 
+.code-panel pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 .code-link {
   color: var(--neon-blue);
   text-decoration: none;
@@ -485,13 +491,35 @@ body {
 @media (max-width: 768px) {
   .hud-header { padding: 15px 20px; }
   .title-container h1 { font-size: 1.8rem; }
-  .profile-card { flex-direction: column; gap: 20px; padding: 20px; }
+  
+  /* Ajuste crítico de tarjeta para ganar espacio lateral */
+  .profile-card { 
+    flex-direction: column; 
+    gap: 15px; 
+    padding: 15px; 
+  }
+  
   .profile-left { flex-direction: row; justify-content: space-around; align-items: center; }
   .profile-socials { flex-direction: row; margin-top: 0; }
   .carousel { width: 260px; height: 320px; }
   .item { width: 220px; height: 280px; }
   .comment-form { flex-direction: column; }
   .counter-box { min-width: 140px; padding: 15px; }
-  /* Ajuste adicional para el texto técnico en móviles pequeños */
-  .code-panel { padding: 12px; font-size: 11px; }
+
+  /* Ajuste DEFINITIVO para el panel de código en móviles */
+  .code-panel { 
+    padding: 10px; 
+    margin-top: 15px;
+  }
+  
+  .code-panel pre { 
+    font-size: 10px; /* Tamaño micro para que quepan las certificaciones */
+    line-height: 1.3;
+    white-space: pre-wrap; /* Fuerza el salto de línea */
+    word-break: break-word; /* Rompe palabras si es necesario */
+  }
+
+  .profile-info h2 { font-size: 1.5rem; }
+  .profile-title, .profile-institution { font-size: 0.9rem; }
+  .stat-item { font-size: 0.8rem; }
 }
