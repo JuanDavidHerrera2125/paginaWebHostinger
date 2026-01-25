@@ -161,8 +161,11 @@ body {
   font-family: 'Courier New', monospace;
   color: var(--neon-blue);
   font-size: 13px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  /* AJUSTE PARA MÓVIL: Permite que el texto salte de línea */
+  white-space: pre-wrap;       
+  word-wrap: break-word;      
+  overflow-wrap: break-word;
+  width: 100%;
 }
 
 .code-link {
@@ -170,6 +173,8 @@ body {
   text-decoration: none;
   border-bottom: 1px dashed var(--neon-blue);
   transition: 0.3s;
+  /* AJUSTE PARA MÓVIL: Evita que el link largo rompa el diseño */
+  word-break: break-all;
 }
 
 .code-link:hover { text-shadow: 0 0 8px var(--neon-blue); background: rgba(0, 242, 255, 0.05); }
@@ -487,4 +492,6 @@ body {
   .item { width: 220px; height: 280px; }
   .comment-form { flex-direction: column; }
   .counter-box { min-width: 140px; padding: 15px; }
+  /* Ajuste adicional para el texto técnico en móviles pequeños */
+  .code-panel { padding: 12px; font-size: 11px; }
 }
