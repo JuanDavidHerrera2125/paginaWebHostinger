@@ -1,210 +1,182 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WEB DEVELOPER | Juan David Herrera</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISoft 3D | Innovación y Modelado Avanzado</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="stars"></div>
-  <div class="grid-overlay"></div>
 
-  <header class="hud-header">
-    <div class="title-container">
-      <h1>WEB DEVELOPER</h1>
-    </div>
-    <div class="hud-circle-icon">
-      <i class="fas fa-play"></i>
-    </div>
-  </header>
-
-  <section class="profile-section">
-    <div class="main-container">
-      <div class="profile-card">
-        <div class="profile-left">
-          <div class="profile-photo">
-            <img src="img/fotoDePerfil2.png" alt="Tu Foto" />
-            <div class="glow-effect"></div>
-          </div>
-          <div class="profile-socials">
-            <a href="https://www.instagram.com/juandavidh25/" target="_blank" class="social-btn">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/juandavid.meneses.509/" target="_blank" class="social-btn">
-              <i class="fab fa-facebook"></i>
-            </a>
-            <a href="https://wa.me/573144673020?text=Hola%20Juan%20David,%20vi%20tu%20portafolio!" target="_blank" class="social-btn">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-          </div>
+    <!-- Header / Barra de Navegación -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">ISoft<span>3D</span></a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#proyectos" class="nav-link">Proyectos 3D</a>
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#comentarios" class="nav-link">Testimonios</a>
+                <a href="#contacto" class="nav-link btn-cta-nav">Cotizar</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
         </div>
+    </header>
 
-        <div class="profile-right">
-          <div class="profile-info">
-            <h2 class="profile-name">Juan David Herrera</h2>
-            <p class="profile-title">Tecnólogo en Análisis y Desarrollo de Software</p>
-            <p class="profile-institution">SENA</p>
-            <div class="profile-stats">
-              <div class="stat-item">
-                <span class="stat-label">DIPLOMADOS:</span>
-                <span class="stat-value">4</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">CERTIFICACIÓN:</span>
-                <span class="stat-value">JS Avanzado (Udemy)</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">TECNOLOGÍAS:</span>
-                <span class="stat-value">HTML, CSS, JS, React</span>
-              </div>
+    <main>
+        <!-- Hero Section con Animaciones y Elementos en Movimiento -->
+        <section id="inicio" class="hero">
+            <div class="animated-bg"></div>
+            <!-- Círculos de luz flotantes animados -->
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+
+            <div class="container hero-container">
+                <div class="hero-content fade-in">
+                    <span class="badge-tech">Tecnología de Vanguardia 2026</span>
+                    <h1>Transformamos tus ideas en <span>Realidad 3D</span></h1>
+                    <p>Expertos en modelado paramétrico, impresión industrial en alta definición y soluciones tridimensionales a la medida.</p>
+                    <div class="hero-buttons">
+                        <a href="#proyectos" class="btn btn-primary">Ver Portafolio</a>
+                        <a href="#servicios" class="btn btn-secondary">Nuestros Servicios</a>
+                    </div>
+                </div>
+                <div class="hero-visual fade-in">
+                    <div class="cube-container">
+                        <div class="tech-card-glow">
+                            <h3>ISoft 3D Engine</h3>
+                            <p>Renderizado y Prototipado Activo</p>
+                            <div class="pulse-dot"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+        </section>
 
-          <div class="code-panel">
-            <pre>
-name = "Juan David Herrera"
-role = "Web Developer"
-education = ["SENA", "U. de Caldas"]
-certifications = [
-  "Tecnologo En Analisis Y Desarrollo De Software",
-  "JS Avanzado - Udemy",
-  "Diplomado en Desarrollo de aplicaciones WEB",
-  "Diplomado en Desarrollo de software",
-  "Diplomado en Fundamentos de Programación",
-  "Diplomado en Habilidades en Programación con énfasis en aplicaciones WEB",
-  "Diplomado en Programación Básica"
-]
-github = "<a href='https://github.com/JuanDavidHerrera2125' target='_blank' class='code-link'>@JuanDavidHerrera2125</a>"
-            </pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- Proyectos 3D Destacados -->
+        <section id="proyectos" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Proyectos 3D Destacados</h2>
+                    <p>Explora algunos de nuestros trabajos más recientes en prototipado y diseño industrial.</p>
+                </div>
+                <div class="grid" id="proyectosGrid">
+                    <!-- Inyección dinámica o tarjetas directas de alto nivel -->
+                    <div class="card project-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800" alt="Prototipo Industrial">
+                            <span class="tag">Ingeniería</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Prototipo Mecánico V2</h3>
+                            <p>Impresión de alta precisión milimétrica para pruebas de ensamblaje industrial.</p>
+                            <a href="#" class="card-link">Ver detalles &rarr;</a>
+                        </div>
+                    </div>
 
-  <section class="carousel-section">
-    <div class="main-container">
-      <div class="carousel" id="carousel">
-        <div class="item" data-type="image" data-src="img/project1.jpg" data-title="App Financiera">
-          <img src="img/project1.jpg" alt="App Financiera" />
-          <div class="item-label">App Financiera</div>
-        </div>
-        <div class="item" data-type="video" data-src="https://www.youtube.com/embed/ONGxbpqI3mI" data-title="GoApp E-commerce">
-          <div class="video-placeholder">
-            <img src="https://img.youtube.com/vi/ONGxbpqI3mI/hqdefault.jpg" alt="Preview GoApp" class="video-thumb">
-            <div class="play-overlay">
-              <i class="fas fa-play-circle"></i>
+                    <div class="card project-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&q=80&w=800" alt="Figura en Resina">
+                            <span class="tag">Coleccionables</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Figura de Alta Resolución</h3>
+                            <p>Modelado y post-procesado en resina líquida con acabados de pintura detallados a mano.</p>
+                            <a href="#" class="card-link">Ver detalles &rarr;</a>
+                        </div>
+                    </div>
+
+                    <div class="card project-card">
+                        <div class="card-img-wrapper">
+                            <video autoplay muted loop playsinline class="project-video">
+                                <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c4/2015-05-19_B%C3%A4r_und_Mensch_%28by_Ralf_Radecker%29.webm/2015-05-19_B%C3%A4r_und_Mensch_%28by_Ralf_Radecker%29.webm.360p.webm" type="video/webm">
+                                Tu navegador no soporta video.
+                            </video>
+                            <span class="tag">Simulación 3D</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Estructura Molecular 3D</h3>
+                            <p>Simulación dinámica avanzada y renderizado en movimiento para análisis estructural.</p>
+                            <a href="#" class="card-link">Ver detalles &rarr;</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <span class="video-action-text">Ver GoApp</span>
-          </div>
-          <div class="item-label">E-commerce</div>
+        </section>
+
+        <!-- Sección de Servicios -->
+        <section id="servicios" class="section alt-bg">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nuestros Servicios</h2>
+                    <p>Soluciones integrales diseñadas para llevar tus proyectos desde el concepto digital hasta el objeto físico.</p>
+                </div>
+                <div class="grid">
+                    <div class="service-card">
+                        <div class="service-icon">🌐</div>
+                        <h3>Modelado 3D CAD</h3>
+                        <p>Diseño paramétrico y optimización de mallas para ingeniería, animación y manufactura.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <h3>Impresión FDM & Resina</h3>
+                        <p>Fabricación aditiva con una amplia gama de materiales técnicos (PLA, ABS, Nylon, Resina UV).</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎯</div>
+                        <h3>Post-Procesado y Pintura</h3>
+                        <p>Acabados estéticos profesionales, lijado, pulido y pintura especializada para prototipos finales.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comentarios / Testimonios -->
+        <section id="comentarios" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Lo que opinan nuestros clientes</h2>
+                </div>
+                <div class="testimonial-container">
+                    <div class="testimonial-card">
+                        <p>"La precisión de las piezas industriales que nos fabricó ISoft 3D superó por completo nuestras expectativas de tiempo y calidad."</p>
+                        <div class="client-info">
+                            <strong>Ing. Carlos Mendoza</strong>
+                            <span>Director de Proyectos</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"El nivel de detalle en las figuras de resina es impresionante. Sin duda se han vuelto nuestro socio estratégico principal."</p>
+                        <div class="client-info">
+                            <strong>Laura Gómez</strong>
+                            <span>Diseñadora de Coleccionables</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contacto" class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <a href="#" class="logo">ISoft<span>3D</span></a>
+                <p>Liderando el desarrollo de soluciones y productos en impresión tridimensional con innovación y calidad profesional.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto Directo</h4>
+                <p>📧 contacto@isoft3d.com</p>
+                <p>📞 +57 3144673020</p>
+                <p>📍 Bogotá, Colombia</p>
+            </div>
         </div>
-        <div class="item" data-type="image" data-src="img/project2.jpg" data-title="Dashboard Admin">
-          <img src="img/project2.jpg" alt="Dashboard Admin" />
-          <div class="item-label">Dashboard Admin</div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ISoft 3D. Todos los derechos reservados.</p>
         </div>
-        <div class="item" data-type="video" data-src="https://www.youtube.com/embed/jNQXAC9IVRw" data-title="Landing Page">
-          <div class="video-placeholder">
-            <i class="fas fa-play-circle"></i>
-            <span>Ver Demo</span>
-          </div>
-          <div class="item-label">Landing Page</div>
-        </div>
-        <div class="item" data-type="image" data-src="img/project3.jpg" data-title="API REST">
-          <img src="img/project3.jpg" alt="API REST" />
-          <div class="item-label">API REST</div>
-        </div>
-      </div>
-      <div class="platform">
-        <div class="beam"></div>
-        <div class="ring"></div>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <section class="blog-section">
-    <div class="main-container">
-      <div class="blog-header">
-        <i class="fas fa-terminal"></i>
-        <h2>SYSTEM_LOG: NOTICIAS Y APORTES</h2>
-      </div>
-
-      <div class="blog-container">
-        <article class="blog-post">
-          <div class="post-date">[ 25 ENE 2026 ]</div>
-          <div class="post-body">
-            <h3>Nuevas tendencias en React 2026</h3>
-            <p>Explorando las últimas actualizaciones de los Server Components y cómo optimizar el rendimiento en aplicaciones de alto tráfico.</p>
-          </div>
-        </article>
-
-        <article class="blog-post">
-          <div class="post-date">[ 20 ENE 2026 ]</div>
-          <div class="post-body">
-            <h3>Guía de CSS Grid Avanzado</h3>
-            <p>Comparto mi último aporte sobre cómo crear layouts complejos y responsivos sin morir en el intento.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="interactive-section">
-    <div class="main-container">
-      <div class="container counters">
-        <div class="counter-box">
-          <h3>Visitas</h3>
-          <div class="counter-value" id="visitCounter">0</div>
-        </div>
-        <div class="counter-box">
-          <h3>Estrellas</h3>
-          <div class="counter-value" id="starCounter">0</div>
-          <div class="star-btn" id="starBtn">★</div>
-        </div>
-      </div>
-
-      <div class="container comments">
-        <h2>Comentarios</h2>
-        <form id="commentForm" class="comment-form">
-          <input type="text" id="commentInput" class="comment-input" placeholder="Escribe un comentario..." required />
-          <button type="submit" class="comment-submit">Enviar</button>
-        </form>
-        <div id="commentList" class="comment-list"></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="modal" id="mediaModal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h3 id="modalTitle"></h3>
-      <div id="modalMedia"></div>
-    </div>
-  </div>
-
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-
-  <script>
-    // Configuración de Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyB65pgHE25OZv2ddGFsDhM7eYnaxfP-6rc",
-      authDomain: "paginaweb-525fa.firebaseapp.com",
-      projectId: "paginaweb-525fa",
-      storageBucket: "paginaweb-525fa.firebasestorage.app",
-      messagingSenderId: "985459195201",
-      appId: "1:985459195201:web:91e544da3f1e71093a75c0",
-      measurementId: "G-Q7PFMEFQHH"
-    };
-
-    // Inicializar Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-  </script>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
