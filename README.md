@@ -1,25 +1,16 @@
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+# React + Vite
 
-🚀 Tecnologías Utilizadas
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Frontend
+Currently, two official plugins are available:
 
-Para la construcción de la interfaz y la lógica del lado del cliente, se utilizaron los pilares fundamentales del desarrollo web:
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-HTML5: Estructuración semántica del contenido.
+## React Compiler
 
-CSS3: Diseño responsivo y estilización visual.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-JavaScript (ES6+): Implementación de funcionalidades interactivas y lógica de la aplicación.
+## Expanding the ESLint configuration
 
-Infraestructura y Persistencia
-
-Firebase: Gestión de persistencia de datos en la nube, garantizando que la información se almacene y recupere de forma eficiente.
-
-Hostinger: Administración del dominio profesional del proyecto.
-
-Vercel: Plataforma de hosting y despliegue continuo.
-
-Permite la conexión gratuita del dominio de Hostinger.
-
-Sincronización automática con Git, reflejando cada cambio de código directamente en el navegador de forma inmediata.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
