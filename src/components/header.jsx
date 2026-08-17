@@ -1,6 +1,3 @@
-/* ==========================================================================
-   [H-01] COMPONENTE HEADER CON NAVEGACIÓN RESPONSIVA
-   ========================================================================== */
 import React, { useState } from 'react';
 
 export function Header() {
@@ -18,7 +15,7 @@ export function Header() {
                 <a href="#inicio" className="logo">ISoft<span>3D</span></a>
 
                 {/* Menú de Navegación */}
-                <nav className={`nav-menu ${isOpen ? 'active' : ''}`} id="navMenu">
+                <nav className={`nav-links ${isOpen ? 'active' : ''}`} id="navMenu">
                     <a href="#inicio" className="nav-link" onClick={closeMenu}>Inicio</a>
                     <a href="#proyectos" className="nav-link" onClick={closeMenu}>Proyectos 3D</a>
                     <a href="#servicios" className="nav-link" onClick={closeMenu}>Servicios</a>
