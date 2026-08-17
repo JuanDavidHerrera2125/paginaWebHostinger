@@ -15,6 +15,7 @@ const VIDEOS_CARRUSEL = [
   '/videos/video2.mp4',
   '/videos/video3.mp4',
   '/videos/video4.mp4',
+  '/videos/video5.mp4',
 ];
 
 export default function App() {
@@ -32,12 +33,12 @@ export default function App() {
   const [estrellasSeleccionadas, setEstrellasSeleccionadas] = useState(5);
 
   const proyectos = [
-    { id: 1, categoria: 'coleccion', titulo: 'Figura Coleccionable Anime', img: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80' },
-    { id: 2, categoria: 'vehiculos', titulo: 'Repuesto Personalizado de Motor', img: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=600&q=80' },
-    { id: 3, categoria: 'hospitalarios', titulo: 'Prótesis y Guías Quirúrgicas', img: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80' },
-    { id: 4, categoria: 'accesorios', titulo: 'Soportes Tecnológicos a Medida', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80' },
-    { id: 5, categoria: 'coleccion', titulo: 'Bustos Escultóricos Detallados', img: 'https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80' },
-    { id: 6, categoria: 'vehiculos', titulo: 'Componentes Aero / Tuning', img: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80' },
+    { id: 1, categoria: 'coleccion', titulo: 'Figura Coleccionable Anime', img: 'img/naruto1.png' },
+    { id: 2, categoria: 'vehiculos', titulo: 'Repuesto Personalizado de Motor', img: 'img/repuesto_motor.png' },
+    { id: 3, categoria: 'hospitalarios', titulo: 'Prótesis y Guías Quirúrgicas', img: 'img/protesis_dentales1.png' },
+    { id: 4, categoria: 'accesorios', titulo: 'Soportes Tecnológicos a Medida', img: 'img/soportes_tec.png' },
+    { id: 5,categoria: 'maquetas', titulo: 'Maquetas a Escala para Proyectos Universitarios', img: 'img/arquitectura.png'} ,
+    { id: 6, categoria: 'vehiculos', titulo: 'Componentes Aero / Tuning', img: 'img/aero.png' },
   ];
 
   const proyectosFiltrados = categoriaActiva === 'todos'

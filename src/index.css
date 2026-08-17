@@ -1,5 +1,21 @@
 /* ==========================================
-   ESTILOS GENERALES Y DISEÑO DE LA WEB
+   ÍNDICE GENERAL DEL CÓDIGO (ÍNDICES DE BÚSQUEDA)
+   ==========================================
+   [01] ESTILOS GENERALES Y DISEÑO DE LA WEB (Reset, Body, Container)
+   [02] HEADER FIJO (STICKY Y RESPONSIVO) (Navegación, Logo, Menú)
+   [03] ESTILOS MEJORADOS PARA EL HERO (Video, Overlay, Títulos, Botones de Acción)
+   [04] SECCIONES GENERALES Y PROCESO (Tarjetas de pasos)
+   [05] CARRUSEL INFINITO DE VIDEOS (Animación marquee y elementos multimedia)
+   [06] GALERÍA DE PROYECTOS (Filtros, Tarjetas con soporte de imagen adaptable)
+   [07] COTIZADOR / CARGA DE ARCHIVOS (Dropzone, Formularios, Botones estilizados)
+   [08] TESTIMONIOS (Caja de reseñas, Sistema de calificación por estrellas)
+   [09] FOOTER Y WHATSAPP FLOTANTE (Pie de página y botón flotante de contacto)
+   [10] MEDIA QUERIES (RESPONSIVO MÓVIL) (Adaptabilidad para pantallas pequeñas)
+   ========================================== */
+
+
+/* ==========================================
+   [01] ESTILOS GENERALES Y DISEÑO DE LA WEB
    ========================================== */
 * {
   box-sizing: border-box;
@@ -20,8 +36,9 @@ body {
   padding: 0 20px;
 }
 
+
 /* ==========================================
-   HEADER FIJO (STICKY Y RESPONSIVO)
+   [02] HEADER FIJO (STICKY Y RESPONSIVO)
    ========================================== */
 .header {
   background: #1e293b;
@@ -100,57 +117,91 @@ body {
   transition: 0.3s;
 }
 
+
 /* ==========================================
-   ESTILOS MEJORADOS PARA EL HERO (MÁXIMO CONTRASTE)
+   [03] ESTILOS MEJORADOS PARA EL HERO (MÁXIMO CONTRASTE)
    ========================================== */
 .hero {
-  padding: 40px 20px 10px 20px;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 20px 40px 20px;
   text-align: center;
-  min-height: 380px;
+  min-height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(rgba(15, 23, 42, 0.90), rgba(15, 23, 42, 0.90)), 
-              url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=80');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+}
+
+/* Video de fondo responsivo */
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 1;
+  object-fit: cover;
+}
+
+/* Capa oscura semitransparente sobre el video */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.85);
+  z-index: 2;
+}
+
+/* Contenido del Hero para mantenerlo por encima del video */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .hero h1 {
-  font-size: 58px;
-  margin-bottom: 40px;
+  font-size: 52px;
+  margin-bottom: 25px;
   color: #ffffff;
   line-height: 1.2;
-  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.85); /* Sombra profunda para el título */
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.85);
 }
 
 .hero h1 span {
-  color: #00f2fe; /* El texto 3D Profesional mantiene el tono neón para resaltar */
+  color: #00f2fe;
   text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
 }
 
 .hero p {
-  font-size: 20px !important;
+  font-size: 18px !important;
   color: #ffffff !important;
-  max-width: 1300px !important;
-  margin: 0 auto 10px auto !important;
+  max-width: 850px !important;
+  margin: 0 auto 30px auto !important;
   line-height: 1.6 !important;
   font-weight: 500 !important;
   
-  /* Borde o trazo muy leve y transparentoso (apenas perceptible) */
-  -webkit-text-stroke: 0.5px rgba(0, 0, 5, 50);
+  /* Borde o trazo muy leve y transparentoso corregido */
+  -webkit-text-stroke: 0.8px rgba(0, 0, 0, 0.45);
   
   /* Sombra de profundidad difusa muy suave para integrar el texto */
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 4.8) !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
 }
+
 .hero-buttons {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 20px;
   flex-wrap: wrap;
-  margin-top: 40px;
+  margin-top: 10px;
 }
 
 /* Botón Principal (Ver Catálogo 3D) con efecto brillante */
@@ -173,11 +224,10 @@ body {
   box-shadow: 0 0 30px rgba(0, 242, 254, 0.8);
 }
 
-/* Botón Secundario (Cotizar con Archivo) con fondo traslúcido y borde brillante */
 /* Botón Secundario (Cotizar con Archivo) con fondo translúcido y borde brillante */
 .hero .btn-secondary {
   color: #ffffff;
-  background: rgba(15, 23, 42, 0.45); /* Fondo oscuro con transparencia controlada */
+  background: rgba(15, 23, 42, 0.45);
   border: 2px solid #00f2fe;
   padding: 14px 28px;
   border-radius: 8px;
@@ -196,8 +246,10 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
 }
+
+
 /* ==========================================
-   SECCIONES GENERALES Y PROCESO
+   [04] SECCIONES GENERALES Y PROCESO
    ========================================== */
 .process-section {
   padding: 60px 0;
@@ -249,8 +301,9 @@ body {
   font-size: 14px;
 }
 
+
 /* ==========================================
-   CARRUSEL INFINITO DE VIDEOS
+   [05] CARRUSEL INFINITO DE VIDEOS
    ========================================== */
 @keyframes scrollMarquee {
     0% {
@@ -310,8 +363,9 @@ body {
     display: block;
 }
 
+
 /* ==========================================
-   GALERÍA DE PROYECTOS
+   [06] GALERÍA DE PROYECTOS
    ========================================== */
 .gallery-section {
   padding: 60px 0;
@@ -364,6 +418,8 @@ body {
   overflow: hidden;
   border: 1px solid #334155;
   transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 
 .cyber-card:hover {
@@ -371,11 +427,27 @@ body {
   border-color: #00f2fe;
 }
 
-.card-img-container img {
+/* Contenedor adaptado con soporte para imágenes verticales (contain) y fondo armónico */
+.card-img-container {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  overflow: hidden;
+  background-color: #0b0f19;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   display: block;
+  transition: transform 0.5s ease;
+}
+
+.cyber-card:hover .card-img-container img {
+  transform: scale(1.05);
 }
 
 .card-body {
@@ -393,8 +465,9 @@ body {
   font-size: 14px;
 }
 
+
 /* ==========================================
-   COTIZADOR / CARGA DE ARCHIVOS
+   [07] COTIZADOR / CARGA DE ARCHIVOS
    ========================================== */
 .upload-section {
   padding: 60px 0;
@@ -468,46 +541,37 @@ body {
   gap: 15px;
 }
 
-.btn-primary {
-  background: #00f2fe;
-  color: #0f172a;
-  padding: 14px;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: opacity 0.3s;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.btn-primary:hover {
-  opacity: 0.9;
-}
-
+/* Estilo unificado y armónico para los botones de envío de formularios */
+.contact-form button,
+.add-testimonial-box button,
+button[type="submit"],
 .btn-main {
-  background: #00f2fe;
-  color: #0f172a;
-  padding: 12px 25px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 700;
-  display: inline-block;
+  background: #00f2fe !important;
+  color: #0f172a !important;
+  padding: 12px 25px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.3) !important;
+  width: 100%;
 }
 
-.btn-secondary {
-  color: #00f2fe;
-  border: 1px solid #00f2fe;
-  padding: 12px 25px;
-  border-radius: 6px;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: 700;
+.contact-form button:hover,
+.add-testimonial-box button:hover,
+button[type="submit"]:hover,
+.btn-main:hover {
+  background: #33f4fe !important;
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.6) !important;
 }
+
 
 /* ==========================================
-   TESTIMONIOS
+   [08] TESTIMONIOS
    ========================================== */
 .testimonials-section {
   padding: 60px 0;
@@ -586,8 +650,9 @@ body {
   font-size: 16px;
 }
 
+
 /* ==========================================
-   FOOTER Y WHATSAPP FLOTANTE
+   [09] FOOTER Y WHATSAPP FLOTANTE
    ========================================== */
 .footer {
   background: #090d16;
@@ -654,8 +719,9 @@ body {
   transform: scale(1.1);
 }
 
+
 /* ==========================================
-   MEDIA QUERIES (RESPONSIVO MÓVIL)
+   [10] MEDIA QUERIES (RESPONSIVO MÓVIL)
    ========================================== */
 @media (max-width: 768px) {
   .menu-toggle {
