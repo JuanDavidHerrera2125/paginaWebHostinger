@@ -1,18 +1,31 @@
+// ==========================================
+// ARCHIVO: src/App.jsx
+// ==========================================
 import React, { useState } from 'react';
 import { Header } from './components/header';
 import { Hero } from './components/hero';
+
+// ==========================================
+// [11] CARRUSEL RUEDA INFINITA PERFECTA
+// Lista de videos: agrega aquí los que quieras
+// y la rueda se adapta sola (duplicado automático)
+// ==========================================
+const VIDEOS_CARRUSEL = [
+  '/videos/video1.mp4',
+  '/videos/video2.mp4',
+  '/videos/video3.mp4',
+  '/videos/video4.mp4',
+];
 
 export default function App() {
   const [categoriaActiva, setCategoriaActiva] = useState('todos');
   const [archivoSubido, setArchivoSubido] = useState(null);
 
-  // Estado para la lista de testimonios reales y el formulario interactivo
   const [testimonios, setTestimonios] = useState([
     { id: 1, nombre: 'Carlos Mendoza', estrellas: 5, texto: 'Las piezas de ingeniería llegaron perfectas y con una tolerancia milimétrica excelente. Muy recomendado.', rol: 'Ingeniero Mecánico' },
     { id: 2, nombre: 'Andrea Gómez', estrellas: 5, texto: 'Excelente atención y rapidez. Mandé a hacer figuras coleccionables y el texturizado superó mis expectativas.', rol: 'Diseñadora 3D' }
   ]);
 
-  // Estados del formulario para nuevo testimonio
   const [nuevoNombre, setNuevoNombre] = useState('');
   const [nuevoRol, setNuevoRol] = useState('');
   const [nuevoComentario, setNuevoComentario] = useState('');
@@ -39,7 +52,6 @@ export default function App() {
     }
   };
 
-  // Función para registrar un nuevo comentario/testimonio en tiempo real
   const handleAgregarTestimonio = (e) => {
     e.preventDefault();
     if (!nuevoNombre.trim() || !nuevoComentario.trim()) {
@@ -68,7 +80,6 @@ export default function App() {
       <Header />
       <Hero />
 
-      {/* SECCIÓN ACTUALIZADA: Introducción, Ventaja Competitiva y Carrusel de Videos */}
       <section className="process-section">
         <div className="container">
           <h2>¿Qué es la Impresión 3D?</h2>
@@ -78,30 +89,25 @@ export default function App() {
             garantizando piezas funcionales, duraderas y con un acabado estético inigualable.
           </p>
 
-          {/* CARRUSEL CENTRADO Y MOVIBLE */}
+          {/* ==========================================
+              [11] CARRUSEL RUEDA INFINITA PERFECTA
+              Set original + duplicado exacto (aria-hidden)
+              El -50% siempre equivale a 1 set completo, sin saltos
+              ========================================== */}
           <div className="carousel-wrapper">
-            <div className="video-carousel">
-              
-              {/* Tarjeta de Video 1 */}
-              <div className="video-item">
-                <video src="/videos/video1.mp4" autoPlay loop muted playsInline />
-              </div>
-
-              {/* Tarjeta de Video 2 */}
-              <div className="video-item">
-                <video src="/videos/video2.mp4" autoPlay loop muted playsInline />
-              </div>
-
-              {/* Tarjeta de Video 3 */}
-              <div className="video-item">
-                <video src="/videos/video3.mp4" autoPlay loop muted playsInline />
-              </div>
-
-              {/* Tarjeta de Video 4 */}
-              <div className="video-item">
-                <video src="/videos/video4.mp4" autoPlay loop muted playsInline />
-              </div>
-
+            <div
+              className="video-carousel"
+              style={{ animationDuration: `${VIDEOS_CARRUSEL.length * 5}s` }}
+            >
+              {[...VIDEOS_CARRUSEL, ...VIDEOS_CARRUSEL].map((src, i) => (
+                <div
+                  key={`${src}-${i}`}
+                  className="video-item"
+                  aria-hidden={i >= VIDEOS_CARRUSEL.length}
+                >
+                  <video src={src} autoPlay loop muted playsInline />
+                </div>
+              ))}
             </div>
           </div>
 
@@ -191,29 +197,25 @@ export default function App() {
           <h2>Lo que dicen nuestros clientes</h2>
           <p className="section-subtitle">Experiencias reales con nuestra tecnología de impresión 3D</p>
 
-          {/* Formulario interactivo para dejar testimonio real */}
           <div className="add-testimonial-box">
             <h3>Deja tu reseña y calificación</h3>
-            <form onSubmit={handleAgregarTestimonio}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '15px' }}>
+            <form className="contact-form" onSubmit={handleAgregarTestimonio}>
+              <div className="form-row">
                 <input 
                   type="text" 
                   placeholder="Tu Nombre" 
                   value={nuevoNombre} 
                   onChange={(e) => setNuevoNombre(e.target.value)} 
                   required 
-                  style={{ padding: '12px', background: '#0b0f19', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#fff' }}
                 />
                 <input 
                   type="text" 
                   placeholder="Tu Ocupación o Empresa (Opcional)" 
                   value={nuevoRol} 
                   onChange={(e) => setNuevoRol(e.target.value)} 
-                  style={{ padding: '12px', background: '#0b0f19', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#fff' }}
                 />
               </div>
 
-              {/* Calificador de estrellas interactivo */}
               <div style={{ textAlign: 'center', marginBottom: '15px' }}>
                 <label style={{ display: 'block', color: '#9ca3af', marginBottom: '5px', fontSize: '14px' }}>Calificación:</label>
                 <div className="star-rating">
@@ -235,14 +237,12 @@ export default function App() {
                 value={nuevoComentario} 
                 onChange={(e) => setNuevoComentario(e.target.value)} 
                 required
-                style={{ width: '100%', padding: '12px', background: '#0b0f19', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#fff', marginBottom: '15px' }}
               ></textarea>
 
               <button type="submit" className="btn-primary" style={{ width: '100%' }}>Publicar Reseña</button>
             </form>
           </div>
 
-          {/* Grilla dinámica de testimonios */}
           <div className="testimonials-grid">
             {testimonios.map((t) => (
               <div key={t.id} className="testimonial-card">

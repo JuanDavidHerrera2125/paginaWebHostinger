@@ -1,3 +1,23 @@
+/* ==========================================
+   ARCHIVO: src/App.css
+   ========================================== */
+:root {
+  --accent: #646cff;
+  --accent-bg: rgba(100, 108, 255, 0.1);
+  --accent-border: #646cff;
+  --border: #3f3f46;
+  --text-h: #f4f4f5;
+  --social-bg: #27272a;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: #18181b;
+  color: var(--text-h);
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
@@ -182,3 +202,12 @@
     border-right-color: var(--border);
   }
 }
+
+/* ==========================================
+   [11] CARRUSEL → MOVIDO A index.css
+   Se eliminó de este archivo el bloque duplicado
+   (keyframes scrollMarquee al -100%, .video-carousel,
+   .video-item y .video-group) porque pisaba la animación
+   correcta de index.css y dejaba el hueco a la derecha.
+   NO volver a agregar estilos del carrusel aquí.
+   ========================================== */
