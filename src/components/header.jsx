@@ -1,30 +1,23 @@
 /* ==========================================================================
-   GLOSARIO DE ÍNDICES COMPONENTE HEADER
-   ==========================================================================
-   [H-01] Importaciones y Definición del Componente Header con Estado
-   [H-02] Estructura Principal del Contenedor de Navegación y Logotipo
-   [H-03] Menú de Enlaces Interactivos con Cierre Automático al Hacer Clic
-   [H-04] Botón Hamburguesa Interactivo para Dispositivos Móviles
+   [H-01] COMPONENTE HEADER CON NAVEGACIÓN RESPONSIVA
    ========================================================================== */
-
-/* [H-01] Importaciones y Definición del Componente Header con Estado */
 import React, { useState } from 'react';
 
 export function Header() {
-    // Estado para controlar la apertura y cierre del menú móvil
+    // Estado para gestionar si el menú está abierto o cerrado en móvil
     const [isOpen, setIsOpen] = useState(false);
 
-    // Funciones para alternar o cerrar el menú al interactuar
+    // Funciones para alternar estado
     const toggleMenu = () => setIsOpen(!isOpen);
     const closeMenu = () => setIsOpen(false);
 
     return (
         <header className="header">
-            {/* [H-02] Estructura Principal del Contenedor de Navegación y Logotipo */}
             <div className="container nav-container">
+                {/* Logotipo */}
                 <a href="#inicio" className="logo">ISoft<span>3D</span></a>
 
-                {/* [H-03] Menú de Enlaces Interactivos con Cierre Automático al Hacer Clic */}
+                {/* Menú de Navegación */}
                 <nav className={`nav-menu ${isOpen ? 'active' : ''}`} id="navMenu">
                     <a href="#inicio" className="nav-link" onClick={closeMenu}>Inicio</a>
                     <a href="#proyectos" className="nav-link" onClick={closeMenu}>Proyectos 3D</a>
@@ -33,7 +26,7 @@ export function Header() {
                     <a href="#contacto" className="nav-link btn-cta-nav" onClick={closeMenu}>Cotizar</a>
                 </nav>
 
-                {/* [H-04] Botón Hamburguesa Interactivo para Dispositivos Móviles */}
+                {/* Botón Hamburguesa */}
                 <button 
                     className={`menu-toggle ${isOpen ? 'active' : ''}`} 
                     id="menuToggle" 

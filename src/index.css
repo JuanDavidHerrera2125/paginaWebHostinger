@@ -12,6 +12,7 @@
    [09] Sección: Proceso de Trabajo (Paso a Paso)
    [10] Módulo Interactivo de Testimonios y Calificación
    [11] Carrusel de Videos con Máscara, Centrado y Tarjetas de Video Ajustadas
+   [12] Adaptabilidad (Media Queries) y Menú Hamburguesa para Móviles
    ========================================================================== */
 
 /* [01] ESTILOS GLOBALES Y TIPOGRAFÍA BASE */
@@ -154,7 +155,6 @@ body { background-color: #0b0f19; color: #f3f4f6; overflow-x: hidden; scroll-beh
 .star-rating span.active { color: #fbbf24; }
 
 /* [11] CARRUSEL DE VIDEOS CON MÁSCARA, CENTRADO Y TARJETAS DE VIDEO AJUSTADAS */
-/* Definición de la animación de desplazamiento */
 @keyframes scrollMarquee {
     0% {
         transform: translateX(0);
@@ -164,25 +164,22 @@ body { background-color: #0b0f19; color: #f3f4f6; overflow-x: hidden; scroll-beh
     }
 }
 
-/* Contenedor principal con efecto de desvanecimiento en los extremos */
 .carousel-wrapper {
     width: 100%;
     margin: 40px auto;
     position: relative;
-    overflow: hidden; /* Oculta lo que sale del contenedor */
+    overflow: hidden;
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-/* Pistas del carrusel en movimiento continuo */
 .video-carousel {
     display: flex;
     gap: 20px;
-    width: max-content; /* Permite que el contenedor se expanda según los elementos */
-    animation: scrollMarquee 25s linear infinite; /* 25s define la velocidad (menor tiempo = más rápido) */
+    width: max-content;
+    animation: scrollMarquee 25s linear infinite;
 }
 
-/* Opcional: Pausar el movimiento cuando el usuario pase el mouse por encima */
 .carousel-wrapper:hover .video-carousel {
     animation-play-state: paused;
 }
@@ -217,6 +214,24 @@ body { background-color: #0b0f19; color: #f3f4f6; overflow-x: hidden; scroll-beh
 }
 
 /* [12] ADAPTABILIDAD (MEDIA QUERIES) Y MENÚ HAMBURGUESA PARA MÓVILES */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    width: 30px;
+    height: 3px;
+    background: #fff;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
 @media screen and (max-width: 768px) {
     /* Mostrar botón hamburguesa */
     .menu-toggle {
