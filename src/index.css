@@ -101,17 +101,17 @@ body {
 }
 
 /* ==========================================
-   HERO SECTION (CORREGIDO SIN SOLAPAMIENTO)
+   ESTILOS MEJORADOS PARA EL HERO (MÁXIMO CONTRASTE)
    ========================================== */
 .hero {
-  padding: 120px 20px 100px 20px;
+  padding: 40px 20px 10px 20px;
   text-align: center;
-  min-height: 580px;
+  min-height: 380px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), 
+  background: linear-gradient(rgba(15, 23, 42, 0.90), rgba(15, 23, 42, 0.90)), 
               url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=80');
   background-size: cover;
   background-position: center;
@@ -119,27 +119,83 @@ body {
 }
 
 .hero h1 {
-  font-size: 46px;
-  margin-bottom: 20px;
-  color: #fff;
+  font-size: 58px;
+  margin-bottom: 40px;
+  color: #ffffff;
   line-height: 1.2;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.85); /* Sombra profunda para el título */
+}
+
+.hero h1 span {
+  color: #00f2fe; /* El texto 3D Profesional mantiene el tono neón para resaltar */
+  text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
 }
 
 .hero p {
-  font-size: 18px;
-  color: #94a3b8;
-  max-width: 700px;
-  margin: 0 auto 30px auto;
+  font-size: 20px !important;
+  color: #ffffff !important;
+  max-width: 1300px !important;
+  margin: 0 auto 10px auto !important;
+  line-height: 1.6 !important;
+  font-weight: 500 !important;
+  
+  /* Borde o trazo muy leve y transparentoso (apenas perceptible) */
+  -webkit-text-stroke: 0.5px rgba(0, 0, 5, 50);
+  
+  /* Sombra de profundidad difusa muy suave para integrar el texto */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 4.8) !important;
 }
-
 .hero-buttons {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 40px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
+/* Botón Principal (Ver Catálogo 3D) con efecto brillante */
+.hero .btn-primary {
+  background: #00f2fe;
+  color: #0f172a;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 16px;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.45);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.hero .btn-primary:hover {
+  background: #33f4fe;
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.8);
+}
+
+/* Botón Secundario (Cotizar con Archivo) con fondo traslúcido y borde brillante */
+/* Botón Secundario (Cotizar con Archivo) con fondo translúcido y borde brillante */
+.hero .btn-secondary {
+  color: #ffffff;
+  background: rgba(15, 23, 42, 0.45); /* Fondo oscuro con transparencia controlada */
+  border: 2px solid #00f2fe;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.hero .btn-secondary:hover {
+  background: rgba(0, 242, 254, 0.25);
+  border-color: #33f4fe;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
+}
 /* ==========================================
    SECCIONES GENERALES Y PROCESO
    ========================================== */
