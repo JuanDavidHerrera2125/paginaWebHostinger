@@ -25,6 +25,7 @@ export default function App() {
   const [detallesCotizacion, setDetallesCotizacion] = useState('');
   const [enviandoCotizacion, setEnviandoCotizacion] = useState(false);
 
+  // Estados para testimonios / reseñas
   const [testimonios, setTestimonios] = useState([
     { id: 1, nombre: 'Carlos Mendoza', estrellas: 5, texto: 'Las piezas de ingeniería llegaron perfectas y con una tolerancia milimétrica excelente. Muy recomendado.', rol: 'Ingeniero Mecánico' },
     { id: 2, nombre: 'Andrea Gómez', estrellas: 5, texto: 'Excelente atención y rapidez. Mandé a hacer figuras coleccionables y el texturizado superó mis expectativas.', rol: 'Diseñadora 3D' }
@@ -314,6 +315,7 @@ export default function App() {
                       key={estrella} 
                       className={estrella <= estrellasSeleccionadas ? 'active' : ''}
                       onClick={() => setEstrellasSeleccionadas(estrella)}
+                      style={{ cursor: 'pointer', fontSize: '24px', color: estrella <= estrellasSeleccionadas ? '#fbbf24' : '#4b5563', margin: '0 2px' }}
                     >
                       ★
                     </span>
