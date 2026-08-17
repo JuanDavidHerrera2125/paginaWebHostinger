@@ -2,14 +2,10 @@
 // ARCHIVO: src/App.jsx
 // ==========================================
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { Header } from './components/header';
 import { Hero } from './components/hero';
 
-// ==========================================
-// [11] CARRUSEL RUEDA INFINITA PERFECTA
-// Lista de videos: agrega aquí los que quieras
-// y la rueda se adapta sola (duplicado automático)
-// ==========================================
 const VIDEOS_CARRUSEL = [
   '/videos/video1.mp4',
   '/videos/video2.mp4',
@@ -22,6 +18,13 @@ export default function App() {
   const [categoriaActiva, setCategoriaActiva] = useState('todos');
   const [archivoSubido, setArchivoSubido] = useState(null);
 
+  // Estados para el formulario de cotización
+  const [nombreCotizacion, setNombreCotizacion] = useState('');
+  const [correoCotizacion, setCorreoCotizacion] = useState('');
+  const [materialCotizacion, setMaterialCotizacion] = useState('');
+  const [detallesCotizacion, setDetallesCotizacion] = useState('');
+  const [enviandoCotizacion, setEnviandoCotizacion] = useState(false);
+
   const [testimonios, setTestimonios] = useState([
     { id: 1, nombre: 'Carlos Mendoza', estrellas: 5, texto: 'Las piezas de ingeniería llegaron perfectas y con una tolerancia milimétrica excelente. Muy recomendado.', rol: 'Ingeniero Mecánico' },
     { id: 2, nombre: 'Andrea Gómez', estrellas: 5, texto: 'Excelente atención y rapidez. Mandé a hacer figuras coleccionables y el texturizado superó mis expectativas.', rol: 'Diseñadora 3D' }
@@ -33,12 +36,48 @@ export default function App() {
   const [estrellasSeleccionadas, setEstrellasSeleccionadas] = useState(5);
 
   const proyectos = [
-    { id: 1, categoria: 'coleccion', titulo: 'Figura Coleccionable Anime', img: 'img/naruto1.png' },
-    { id: 2, categoria: 'vehiculos', titulo: 'Repuesto Personalizado de Motor', img: 'img/repuesto_motor.png' },
-    { id: 3, categoria: 'hospitalarios', titulo: 'Prótesis y Guías Quirúrgicas', img: 'img/protesis_dentales1.png' },
-    { id: 4, categoria: 'accesorios', titulo: 'Soportes Tecnológicos a Medida', img: 'img/soportes_tec.png' },
-    { id: 5,categoria: 'maquetas', titulo: 'Maquetas a Escala para Proyectos Universitarios', img: 'img/arquitectura.png'} ,
-    { id: 6, categoria: 'vehiculos', titulo: 'Componentes Aero / Tuning', img: 'img/aero.png' },
+    { 
+      id: 1, 
+      categoria: 'coleccion', 
+      titulo: 'Figura Coleccionable Anime', 
+      img: 'img/naruto1.png',
+      descripcion: 'Detalle extremo y acabado texturizado de alta fidelidad para coleccionistas.'
+    },
+    { 
+      id: 2, 
+      categoria: 'vehiculos', 
+      titulo: 'Repuesto Personalizado de Motor', 
+      img: 'img/repuesto_motor.png',
+      descripcion: 'Alta resistencia térmica y mecánica diseñada para soportar condiciones exigentes.'
+    },
+    { 
+      id: 3, 
+      categoria: 'hospitalarios', 
+      titulo: 'Prótesis y Guías Quirúrgicas', 
+      img: 'img/protesis_dentales1.png',
+      descripcion: 'Precisión biocompatible y ajuste milimétrico para aplicaciones del sector salud.'
+    },
+    { 
+      id: 4, 
+      categoria: 'accesorios', 
+      titulo: 'Soportes Tecnológicos a Medida', 
+      img: 'img/soportes_tec.png',
+      descripcion: 'Ergonomía y diseño optimizado para organizar tus dispositivos diarios.'
+    },
+    { 
+      id: 5, 
+      categoria: 'maquetas', 
+      titulo: 'Maquetas a Escala para Proyectos Universitarios', 
+      img: 'img/arquitectura.png',
+      descripcion: 'Representación arquitectónica detallada para una presentación profesional impecable.'
+    },
+    { 
+      id: 6, 
+      categoria: 'vehiculos', 
+      titulo: 'Componentes Aero / Tuning', 
+      img: 'img/aero.png',
+      descripcion: 'Aerodinámica optimizada y reducción de peso con estética deportiva avanzada.'
+    },
   ];
 
   const proyectosFiltrados = categoriaActiva === 'todos'
@@ -51,6 +90,39 @@ export default function App() {
       setArchivoSubido(file.name);
       alert(`¡Archivo "${file.name}" cargado exitosamente para análisis 3D!`);
     }
+  };
+
+  const handleEnviarCotizacion = (e) => {
+    e.preventDefault();
+    setEnviandoCotizacion(true);
+
+    const templateParams = {
+      name: nombreCotizacion,
+      email: correoCotizacion,
+      title: `Cotización de Material: ${materialCotizacion}`,
+      message: `Material Seleccionado: ${materialCotizacion}\nArchivo Adjunto: ${archivoSubido || 'Ningún archivo adjunto'}\n\nDetalles del cliente:\n${detallesCotizacion}`,
+    };
+
+    const SERVICE_ID = 'service_tdgmc5n';
+    const TEMPLATE_ID = 'xgn24bp';
+    const PUBLIC_KEY = '83fOPf7y6hiuNeWny';
+
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        alert('¡Cotización enviada con éxito! Te contactaremos pronto.');
+        
+        setNombreCotizacion('');
+        setCorreoCotizacion('');
+        setMaterialCotizacion('');
+        setDetallesCotizacion('');
+        setArchivoSubido(null);
+        setEnviandoCotizacion(false);
+      }, (err) => {
+        console.log('FAILED...', err);
+        alert('Hubo un error al enviar la cotización. Por favor intenta de nuevo.');
+        setEnviandoCotizacion(false);
+      });
   };
 
   const handleAgregarTestimonio = (e) => {
@@ -90,11 +162,6 @@ export default function App() {
             garantizando piezas funcionales, duraderas y con un acabado estético inigualable.
           </p>
 
-          {/* ==========================================
-              [11] CARRUSEL RUEDA INFINITA PERFECTA
-              Set original + duplicado exacto (aria-hidden)
-              El -50% siempre equivale a 1 set completo, sin saltos
-              ========================================== */}
           <div className="carousel-wrapper">
             <div
               className="video-carousel"
@@ -134,7 +201,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Galería de Proyectos 3D */}
       <section id="galeria" className="gallery-section">
         <div className="container">
           <h2>Proyectos 3D Destacados</h2>
@@ -156,7 +222,7 @@ export default function App() {
                 </div>
                 <div className="card-body">
                   <h3>{p.titulo}</h3>
-                  <p>Diseños funcionales optimizados para máxima resistencia y acabado estético profesional.</p>
+                  <p>{p.descripcion}</p>
                 </div>
               </div>
             ))}
@@ -164,11 +230,10 @@ export default function App() {
         </div>
       </section>
 
-      {/* Sección de Carga de Archivos 3D (Cotizador) */}
       <section id="cotizador" className="upload-section">
         <div className="container contact-container">
           <h2>Cotizador con Carga de Archivos 3D</h2>
-          <p>Sube tu archivo de diseño (.stl, .obj, .step) para calcular densidad y recibir presupuesto automático.</p>
+          <p>Sube tu archivo de diseño (.stl, .obj, .step) para calcular densidad y recibir presupuesto automático en tu correo.</p>
           
           <div className="dropzone" onClick={() => document.getElementById('fileInput').click()}>
             <span className="dropzone-label">📁 Haz clic aquí para adjuntar archivo 3D</span>
@@ -176,23 +241,47 @@ export default function App() {
             {archivoSubido && <p style={{ color: '#00f2fe', marginTop: '10px' }}>Archivo seleccionado: {archivoSubido}</p>}
           </div>
 
-          <form className="contact-form" onSubmit={(e) => { e.preventDefault(); alert('¡Cotización enviada con éxito!'); }}>
-            <input type="text" placeholder="Tu Nombre" required />
-            <input type="email" placeholder="Correo Electrónico" required />
-            <select className="select-material" required defaultValue="">
+          <form className="contact-form" onSubmit={handleEnviarCotizacion}>
+            <input 
+              type="text" 
+              placeholder="Tu Nombre" 
+              value={nombreCotizacion}
+              onChange={(e) => setNombreCotizacion(e.target.value)}
+              required 
+            />
+            <input 
+              type="email" 
+              placeholder="Correo Electrónico" 
+              value={correoCotizacion}
+              onChange={(e) => setCorreoCotizacion(e.target.value)}
+              required 
+            />
+            <select 
+              className="select-material" 
+              value={materialCotizacion}
+              onChange={(e) => setMaterialCotizacion(e.target.value)}
+              required 
+            >
               <option value="" disabled>Selecciona el Material 3D</option>
-              <option value="pla">PLA Pro (Estándar / Decorativo)</option>
-              <option value="petg">PETG (Alta Resistencia Mecánica)</option>
-              <option value="abs">ABS (Industrial / Automotriz)</option>
-              <option value="resina">Resina UV Alta Definición (Detalle extremo)</option>
+              <option value="PLA Pro (Estándar / Decorativo)">PLA Pro (Estándar / Decorativo)</option>
+              <option value="PETG (Alta Resistencia Mecánica)">PETG (Alta Resistencia Mecánica)</option>
+              <option value="ABS (Industrial / Automotriz)">ABS (Industrial / Automotriz)</option>
+              <option value="Resina UV Alta Definición">Resina UV Alta Definición (Detalle extremo)</option>
             </select>
-            <textarea rows="4" placeholder="Detalles adicionales, medidas o instrucciones especiales..." required></textarea>
-            <button type="submit" className="btn-primary">Enviar Solicitud de Cotización</button>
+            <textarea 
+              rows="4" 
+              placeholder="Detalles adicionales, medidas o instrucciones especiales..." 
+              value={detallesCotizacion}
+              onChange={(e) => setDetallesCotizacion(e.target.value)}
+              required
+            ></textarea>
+            <button type="submit" className="btn-primary" disabled={enviandoCotizacion}>
+              {enviandoCotizacion ? 'Enviando cotización...' : 'Enviar Solicitud de Cotización'}
+            </button>
           </form>
         </div>
       </section>
 
-      {/* Sección de Testimonios Reales + Formulario con Calificador de Estrellas */}
       <section id="testimonios" className="testimonials-section">
         <div className="container">
           <h2>Lo que dicen nuestros clientes</h2>
@@ -259,7 +348,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Footer Completo */}
       <footer className="footer">
         <div className="container footer-content">
           <div className="footer-col">
@@ -285,7 +373,6 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Botón Flotante de WhatsApp */}
       <a href="https://wa.me/573144673020" className="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat de WhatsApp">
         💬
       </a>
