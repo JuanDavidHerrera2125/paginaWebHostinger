@@ -1,113 +1,130 @@
 import React, { useState, useEffect } from 'react';
-import { db } from './firebaseConfig';
-import { collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from 'firebase/firestore';
-import './Resenas.css';
+import { db } from '../firebase';
+import { collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from 'firebase/firestore';
 
-const Resenas = () => {
-  const [resenas, setResenas] = useState([]);
-  const [formData, setFormData] = useState({
-    usuario: '',
-    ocupacion: '',
-    comentario: '',
-    rating: 5,
-  });
-  const [isExpanded, setIsExpanded] = useState(false);
+export default function Resenas() {
+  const [testimonios, setTestimonios] = useState([]);
+  const [nuevoNombre, setNuevoNombre] = useState('');
+  const [nuevoRol, setNuevoRol] = useState('');
+  const [nuevoComentario, setNuevoComentario] = useState('');
+  const [estrellasSeleccionadas, setEstrellasSeleccionadas] = useState(5);
+  const [cargando, setCargando] = useState(true);
 
-  // Sincronizar en tiempo real usando 'createAt'
+  // Escuchar la colección 'testimonios' en tiempo real
   useEffect(() => {
-    const q = query(collection(db, 'resenas'), orderBy('createAt', 'desc'));
-    return onSnapshot(q, (snapshot) => {
-      setResenas(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    const q = query(collection(db, 'testimonios'), orderBy('creadoEn', 'desc'));
+    
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const docs = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setTestimonios(docs);
+      setCargando(false);
+    }, (error) => {
+      console.error("Error al obtener testimonios:", error);
+      setCargando(false);
     });
+
+    return () => unsubscribe();
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleAgregarTestimonio = async (e) => {
     e.preventDefault();
-    await addDoc(collection(db, 'resenas'), {
-      ...formData,
-      createAt: serverTimestamp(),
-    });
-    setFormData({ usuario: '', ocupacion: '', comentario: '', rating: 5 });
+    if (!nuevoNombre.trim() || !nuevoComentario.trim()) {
+      alert('Por favor completa tu nombre y el comentario.');
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, 'testimonios'), {
+        nombre: nuevoNombre,
+        rol: nuevoRol || 'Cliente Verificado',
+        estrellas: estrellasSeleccionadas,
+        texto: nuevoComentario,
+        creadoEn: serverTimestamp()
+      });
+
+      setNuevoNombre('');
+      setNuevoRol('');
+      setNuevoComentario('');
+      setEstrellasSeleccionadas(5);
+      alert('¡Gracias por tu reseña! Ha sido publicada con éxito.');
+    } catch (error) {
+      console.error("Error al guardar reseña:", error);
+      alert('Ocurrió un error al guardar tu reseña. Intenta nuevamente.');
+    }
   };
 
   return (
-    <div className="resenas-section">
-      <h3>Reseñas</h3>
-      
-      <form onSubmit={handleSubmit} className="resenas-form">
-        <input
-          type="text"
-          placeholder="Tu nombre"
-          value={formData.usuario}
-          onChange={e => setFormData({ ...formData, usuario: e.target.value })}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Tu ocupación (ej. Desarrollador)"
-          value={formData.ocupacion}
-          onChange={e => setFormData({ ...formData, ocupacion: e.target.value })}
-          required
-        />
-        
-        {/* Selector de estrellas */}
-        <div className="rating-selector">
-          {[1, 2, 3, 4, 5].map(star => (
-            <span
-              key={star}
-              onClick={() => setFormData({ ...formData, rating: star })}
-              style={{
-                color: star <= formData.rating ? '#ffc107' : '#ccc',
-                cursor: 'pointer',
-                fontSize: '22px',
-                marginRight: '4px'
-              }}
-            >
-              ★
-            </span>
-          ))}
-        </div>
+    <section id="testimonios" className="testimonials-section">
+      <div className="container">
+        <h2>Lo que dicen nuestros clientes</h2>
+        <p className="section-subtitle">Experiencias reales con nuestra tecnología de impresión 3D</p>
 
-        <textarea
-          placeholder="Escribe tu reseña..."
-          value={formData.comentario}
-          onChange={e => setFormData({ ...formData, comentario: e.target.value })}
-          required
-        />
-        <button type="submit">Publicar reseña</button>
-      </form>
+        <div className="add-testimonial-box">
+          <h3>Deja tu reseña y calificación</h3>
+          <form className="contact-form" onSubmit={handleAgregarTestimonio}>
+            <div className="form-row">
+              <input 
+                type="text" 
+                placeholder="Tu Nombre" 
+                value={nuevoNombre} 
+                onChange={(e) => setNuevoNombre(e.target.value)} 
+                required 
+              />
+              <input 
+                type="text" 
+                placeholder="Tu Ocupación o Empresa (Opcional)" 
+                value={nuevoRol} 
+                onChange={(e) => setNuevoRol(e.target.value)} 
+              />
+            </div>
 
-      {/* Lista de reseñas con scroll */}
-      <div className="resenas-container">
-        <div className={`resenas-scroll ${isExpanded ? 'expanded' : ''}`}>
-          {resenas.length === 0 ? (
-            <p className="no-resenas">Aún no hay reseñas. ¡Sé el primero!</p>
-          ) : (
-            (isExpanded ? resenas : resenas.slice(0, 3)).map(r => (
-              <div key={r.id} className="resena-card">
-                <div className="resena-header">
-                  <strong>{r.usuario}</strong>
-                  <span className="resena-ocupacion">({r.ocupacion})</span>
-                  <span className="resena-estrellas">{'★'.repeat(r.rating || 5)}</span>
-                </div>
-                <p className="resena-text">{r.comentario}</p>
+            <div style={{ textAlign: 'center', marginBottom: '15px' }}>
+              <label style={{ display: 'block', color: '#9ca3af', marginBottom: '5px', fontSize: '14px' }}>Calificación:</label>
+              <div className="star-rating">
+                {[1, 2, 3, 4, 5].map((estrella) => (
+                  <span 
+                    key={estrella} 
+                    className={estrella <= estrellasSeleccionadas ? 'active' : ''}
+                    onClick={() => setEstrellasSeleccionadas(estrella)}
+                  >
+                    ★
+                  </span>
+                ))}
               </div>
-            ))
-          )}
+            </div>
+
+            <textarea 
+              rows="3" 
+              placeholder="Escribe tu experiencia con el servicio..." 
+              value={nuevoComentario} 
+              onChange={(e) => setNuevoComentario(e.target.value)} 
+              required
+            ></textarea>
+
+            <button type="submit" className="btn-primary" style={{ width: '100%' }}>Publicar Reseña</button>
+          </form>
         </div>
 
-        {resenas.length > 3 && (
-          <button
-            type="button"
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="toggle-btn"
-          >
-            {isExpanded ? 'Ver menos' : `Ver más reseñas (${resenas.length - 3})`}
-          </button>
+        {cargando ? (
+          <p style={{ textAlign: 'center', color: '#9ca3af', marginTop: '20px' }}>Cargando opiniones...</p>
+        ) : (
+          <div className="testimonials-grid">
+            {testimonios.map((t) => (
+              <div key={t.id} className="testimonial-card">
+                <div className="stars">
+                  {'★'.repeat(t.estrellas || 5)}{'☆'.repeat(5 - (t.estrellas || 5))}
+                </div>
+                <p>"{t.texto}"</p>
+                <h4>{t.nombre}</h4>
+                <span style={{ fontSize: '12px', color: '#6b7280' }}>{t.rol}</span>
+              </div>
+            ))}
+          </div>
         )}
       </div>
-    </div>
+    </section>
   );
-};
-
-export default Resenas;
+}

@@ -1,10 +1,8 @@
-// ==========================================
-// ARCHIVO: src/App.jsx
-// ==========================================
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Header } from './components/header';
 import { Hero } from './components/hero';
+import Resenas from './components/Resenas';
 
 const VIDEOS_CARRUSEL = [
   '/videos/video1.mp4',
@@ -24,17 +22,6 @@ export default function App() {
   const [materialCotizacion, setMaterialCotizacion] = useState('');
   const [detallesCotizacion, setDetallesCotizacion] = useState('');
   const [enviandoCotizacion, setEnviandoCotizacion] = useState(false);
-
-  // Estados para testimonios / reseñas
-  const [testimonios, setTestimonios] = useState([
-    { id: 1, nombre: 'Carlos Mendoza', estrellas: 5, texto: 'Las piezas de ingeniería llegaron perfectas y con una tolerancia milimétrica excelente. Muy recomendado.', rol: 'Ingeniero Mecánico' },
-    { id: 2, nombre: 'Andrea Gómez', estrellas: 5, texto: 'Excelente atención y rapidez. Mandé a hacer figuras coleccionables y el texturizado superó mis expectativas.', rol: 'Diseñadora 3D' }
-  ]);
-
-  const [nuevoNombre, setNuevoNombre] = useState('');
-  const [nuevoRol, setNuevoRol] = useState('');
-  const [nuevoComentario, setNuevoComentario] = useState('');
-  const [estrellasSeleccionadas, setEstrellasSeleccionadas] = useState(5);
 
   const proyectos = [
     { 
@@ -124,29 +111,6 @@ export default function App() {
         alert('Hubo un error al enviar la cotización. Por favor intenta de nuevo.');
         setEnviandoCotizacion(false);
       });
-  };
-
-  const handleAgregarTestimonio = (e) => {
-    e.preventDefault();
-    if (!nuevoNombre.trim() || !nuevoComentario.trim()) {
-      alert('Por favor completa tu nombre y el comentario.');
-      return;
-    }
-
-    const nuevoObj = {
-      id: Date.now(),
-      nombre: nuevoNombre,
-      rol: nuevoRol || 'Cliente Verificado',
-      estrellas: estrellasSeleccionadas,
-      texto: nuevoComentario
-    };
-
-    setTestimonios([nuevoObj, ...testimonios]);
-    setNuevoNombre('');
-    setNuevoRol('');
-    setNuevoComentario('');
-    setEstrellasSeleccionadas(5);
-    alert('¡Gracias por tu reseña! Ha sido publicada con éxito.');
   };
 
   return (
@@ -283,72 +247,8 @@ export default function App() {
         </div>
       </section>
 
-      <section id="testimonios" className="testimonials-section">
-        <div className="container">
-          <h2>Lo que dicen nuestros clientes</h2>
-          <p className="section-subtitle">Experiencias reales con nuestra tecnología de impresión 3D</p>
-
-          <div className="add-testimonial-box">
-            <h3>Deja tu reseña y calificación</h3>
-            <form className="contact-form" onSubmit={handleAgregarTestimonio}>
-              <div className="form-row">
-                <input 
-                  type="text" 
-                  placeholder="Tu Nombre" 
-                  value={nuevoNombre} 
-                  onChange={(e) => setNuevoNombre(e.target.value)} 
-                  required 
-                />
-                <input 
-                  type="text" 
-                  placeholder="Tu Ocupación o Empresa (Opcional)" 
-                  value={nuevoRol} 
-                  onChange={(e) => setNuevoRol(e.target.value)} 
-                />
-              </div>
-
-              <div style={{ textAlign: 'center', marginBottom: '15px' }}>
-                <label style={{ display: 'block', color: '#9ca3af', marginBottom: '5px', fontSize: '14px' }}>Calificación:</label>
-                <div className="star-rating">
-                  {[1, 2, 3, 4, 5].map((estrella) => (
-                    <span 
-                      key={estrella} 
-                      className={estrella <= estrellasSeleccionadas ? 'active' : ''}
-                      onClick={() => setEstrellasSeleccionadas(estrella)}
-                      style={{ cursor: 'pointer', fontSize: '24px', color: estrella <= estrellasSeleccionadas ? '#fbbf24' : '#4b5563', margin: '0 2px' }}
-                    >
-                      ★
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <textarea 
-                rows="3" 
-                placeholder="Escribe tu experiencia con el servicio..." 
-                value={nuevoComentario} 
-                onChange={(e) => setNuevoComentario(e.target.value)} 
-                required
-              ></textarea>
-
-              <button type="submit" className="btn-primary" style={{ width: '100%' }}>Publicar Reseña</button>
-            </form>
-          </div>
-
-          <div className="testimonials-grid">
-            {testimonios.map((t) => (
-              <div key={t.id} className="testimonial-card">
-                <div className="stars">
-                  {'★'.repeat(t.estrellas)}{'☆'.repeat(5 - t.estrellas)}
-                </div>
-                <p>"{t.texto}"</p>
-                <h4>{t.nombre}</h4>
-                <span style={{ fontSize: '12px', color: '#6b7280' }}>{t.rol}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* COMPONENTE DE RESEÑAS CONECTADO A FIREBASE */}
+      <Resenas />
 
       <footer className="footer">
         <div className="container footer-content">
