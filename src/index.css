@@ -9,6 +9,9 @@
    [06] Sección de Testimonios y Estrellas de Calificación
    [07] Pie de Página (Footer Completo)
    [08] Botón Flotante de WhatsApp
+   [09] Sección: Proceso de Trabajo (Paso a Paso)
+   [10] Módulo Interactivo de Testimonios y Calificación
+   [11] Carrusel de Videos con Máscara, Centrado y Tarjetas de Video Ajustadas
    ========================================================================== */
 
 /* [01] ESTILOS GLOBALES Y TIPOGRAFÍA BASE */
@@ -29,7 +32,7 @@ body { background-color: #0b0f19; color: #f3f4f6; overflow-x: hidden; scroll-beh
 /* [03] SECCIÓN PRINCIPAL (HERO COMPACTO CON IMAGEN Y VIDEO FLOTANTE) */
 .hero-video-container {
     position: relative;
-    height: 95vh; /* Altura compacta para dejar ver el contenido inferior */
+    height: 95vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,7 +44,6 @@ body { background-color: #0b0f19; color: #f3f4f6; overflow-x: hidden; scroll-beh
     background-repeat: no-repeat;
 }
 
-/* Contenedor del video corto de impresión 3D dentro del hero */
 .hero-bg-video {
     position: absolute;
     top: 50%;
@@ -57,7 +59,6 @@ body { background-color: #0b0f19; color: #f3f4f6; overflow-x: hidden; scroll-beh
     pointer-events: none;
 }
 
-/* Capa oscura translúcida para contraste de textos */
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -135,3 +136,137 @@ body { background-color: #0b0f19; color: #f3f4f6; overflow-x: hidden; scroll-beh
 /* [08] BOTÓN FLOTANTE DE WHATSAPP */
 .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; text-decoration: none; transition: transform 0.3s; }
 .whatsapp-float:hover { transform: scale(1.1); }
+
+/* [09] SECCIÓN: PROCESO DE TRABAJO (PASO A PASO) */
+.process-section { padding: 80px 0; background: #0b0f19; text-align: center; }
+.process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 40px; }
+.process-card { background: #1e293b; padding: 30px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); position: relative; transition: 0.3s; }
+.process-card:hover { transform: translateY(-5px); border-color: rgba(0, 242, 254, 0.4); }
+.process-number { font-size: 32px; font-weight: bold; color: #00f2fe; margin-bottom: 15px; opacity: 0.8; }
+.process-card h3 { color: #fff; font-size: 18px; margin-bottom: 10px; }
+.process-card p { color: #9ca3af; font-size: 14px; }
+
+/* [10] MÓDULO INTERACTIVO DE TESTIMONIOS Y CALIFICACIÓN */
+.add-testimonial-box { background: #1e293b; padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 40px; text-align: left; }
+.add-testimonial-box h3 { color: #fff; font-size: 20px; margin-bottom: 20px; text-align: center; }
+.star-rating { display: flex; gap: 5px; font-size: 28px; cursor: pointer; margin-bottom: 15px; justify-content: center; }
+.star-rating span { color: #4b5563; transition: color 0.2s; }
+.star-rating span.active { color: #fbbf24; }
+
+/* [11] CARRUSEL DE VIDEOS CON MÁSCARA, CENTRADO Y TARJETAS DE VIDEO AJUSTADAS */
+/* Definición de la animación de desplazamiento */
+@keyframes scrollMarquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Contenedor principal con efecto de desvanecimiento en los extremos */
+.carousel-wrapper {
+    width: 100%;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden; /* Oculta lo que sale del contenedor */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Pistas del carrusel en movimiento continuo */
+.video-carousel {
+    display: flex;
+    gap: 20px;
+    width: max-content; /* Permite que el contenedor se expanda según los elementos */
+    animation: scrollMarquee 25s linear infinite; /* 25s define la velocidad (menor tiempo = más rápido) */
+}
+
+/* Opcional: Pausar el movimiento cuando el usuario pase el mouse por encima */
+.carousel-wrapper:hover .video-carousel {
+    animation-play-state: paused;
+}
+
+.video-carousel::-webkit-scrollbar { display: none; }
+
+.video-item {
+    min-width: 320px;
+    height: 180px;
+    background: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.video-item:hover { 
+    transform: scale(1.05); 
+    border-color: #00f2fe; 
+}
+
+.video-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* [12] ADAPTABILIDAD (MEDIA QUERIES) Y MENÚ HAMBURGUESA PARA MÓVILES */
+@media screen and (max-width: 768px) {
+    /* Mostrar botón hamburguesa */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Ocultar menú normal por defecto y transformarlo en panel móvil flotante */
+    .nav-menu {
+        position: fixed;
+        top: 75px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 75px);
+        background: rgba(11, 15, 25, 0.98);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: 0.4s ease-in-out;
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Clase activa para desplegar el menú desde JS */
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu a {
+        font-size: 18px;
+    }
+
+    /* Animación de transformación del icono hamburguesa a "X" cuando esté activo */
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Ajustes generales de contenedores en móvil */
+    .hero-bg-video {
+        width: 85%;
+        max-width: 320px;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+}
