@@ -103,8 +103,8 @@ export default function App() {
       message: `Material Seleccionado: ${materialCotizacion}\nArchivo Adjunto: ${archivoSubido || 'Ningún archivo adjunto'}\n\nDetalles del cliente:\n${detallesCotizacion}`,
     };
 
-    const SERVICE_ID = 'service_tdgmc5n';
-    const TEMPLATE_ID = 'xgn24bp';
+    const SERVICE_ID = 'service_4nbgmpv';
+    const TEMPLATE_ID = 'template_gptmr3b';
     const PUBLIC_KEY = '83fOPf7y6hiuNeWny';
 
     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
